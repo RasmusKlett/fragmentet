@@ -10,7 +10,7 @@ import core.views
 
 urlpatterns = patterns('', 
     url(r'^$', core.views.mainpage),
-    url(r'^events/?$', events.views.mainpage),
+    url(r'^events$', events.views.mainpage),
     #url(r'^hello/$', hello),
     #url(r'^time/$', current_datetime),
     #url(r'^time/plus/(\d{1,2})/$', hours_ahead),
