@@ -1,0 +1,10 @@
+CREATE DATABASE fragmentet;
+
+CREATE  TABLE `fragmentet`.`nyt_event` (
+  `idnyt_event` INT NOT NULL AUTO_INCREMENT ,
+  `beskrivelse` TEXT NOT NULL DEFAULT 'Beskrivelse' ,
+  `sidebar` VARCHAR(45) NOT NULL DEFAULT 'Sidebar' ,
+  `produktion` VARCHAR(45) NULL ,
+  `navn` CHAR(64) NOT NULL DEFAULT 'Eventnavn' ,
+  `facebook_link` VARCHAR(45) NULL ,
+  PRIMARY KEY (`idnyt_event`) );

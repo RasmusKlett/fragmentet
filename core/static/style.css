@@ -1,0 +1,53 @@
+body {
+    background-color: #262222;
+    font-size: .85em;
+    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+    color: #696969;
+}
+
+#parentdiv {
+    background-color: white;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wrap {
+    width: 100%;
+    clear: both;
+}
+
+#nav-global {
+    position: absolute;
+    display: block;
+    white-space: nowrap;
+    padding-left: 0;
+    
+}
+
+#nav-global li {
+    color: #7D0400;
+    font: "serif";
+    font-size: 1.5em;
+    display: block;
+    float:left;
+    list-style-type: none;
+    margin:0;
+    padding:0;
+}
+#nav-global a {
+    text-align: center;
+    padding: 0 20px;
+}
+
+#header {
+    position: relative;
+    display: block;
+    height: 50px;
+}
+
+#content {
+    display: block;
+}
