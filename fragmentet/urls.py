@@ -9,11 +9,11 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('', 
-    url(r'^$', info.views.mainpage),
-    url(r'^aktuelt/?$', events.views.list),
-    url(r'^aktuelt/(\w+)/?$', events.views.view_event),
+    url(r'^$', events.views.main),
+    url(r'^aktuelt/?$', events.views.current_list),
+    url(r'^aktuelt/(\w+)/?$', events.views.current_single),
     url(r'^teatret/?$', info.views.about),
-    url(r'^arkiv/?$', events.views.archive),
+    url(r'^arkiv/?$', events.views.archive_list),
     url(r'^medlemskab/?$', info.views.membership),
     url(r'^kontakt/?$', info.views.contact),
 

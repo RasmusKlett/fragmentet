@@ -1,9 +1,6 @@
 # Create your views here.
 from django.shortcuts import render
 
-def mainpage(request):
-    return render(request, 'info.main.html')
-
 def about(request):
     return render(request, 'info.about.html')
 

@@ -16,9 +16,9 @@
         <img src={% static 'header-image.jpg' %} alt="Fragmentet"/>
         <ul id="nav-global" class="wrap">
             <li><a href="/">Forside</a></li>
-            <li><a href="{% url events.views.list %}">Aktuelt</a></li>
+            <li><a href="{% url events.views.current_list %}">Aktuelt</a></li>
             <li><a href="{% url info.views.about %}">Om Teatret</a></li>
-            <li><a href="{% url events.views.archive %}">Arkiv</a></li>
+            <li><a href="{% url events.views.archive_list %}">Arkiv</a></li>
             <li><a href="{% url info.views.membership %}">Medlemskab</a></li>
             <li><a href="{% url info.views.contact %}">Kontakt</a></li>
             <span class="stretch"></span>

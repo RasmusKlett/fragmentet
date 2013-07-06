@@ -1,0 +1,22 @@
+{% extends selected_template|default:"base.html" %}
+
+{% block title %}{{event.name}} - Fragmentet{% endblock %}
+{% block content %}
+<h1>{{event.name}}</h1>
+<div id="tabs">
+    <ul>
+        <li><a href="#tab-beskrivelse">Beskrivelse</a></li>
+        <li><a href="#tab-medvirkende">Medvirkende</a></li>
+        <li><a href="#tab-galleri">Galleri</a></li>
+    </ul>
+    <div id="tab-beskrivelse">
+        {{event.description|safe}}
+    </div>
+    <div id="tab-medvirkende">
+        {{event.production}}
+    </div>
+    <div id="tab-galleri">
+        Ikke implementeret
+    </div}
+</div>
+{% endblock %}

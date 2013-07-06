@@ -1,7 +1,40 @@
 {% extends selected_template|default:"base.html" %}
 
-
-{% block title %}Events - Fragmentet{% endblock %}
+{% block title %}Fragmentet{% endblock %}
 {% block content %} 
-<div> Dette er Events-siden!</div>
+<div id="event">
+    <h3>
+    title(fra db)
+    </h3>
+    <div>
+    underline(fra db)
+    </div>
+    <div>
+    event-content
+        <div>
+        text(fra db)
+        </div>
+        <div>
+        picture
+        </div>
+    </div>
+</div>
+<div id ="news">
+News
+    <div>
+    newsfeed
+        <div>
+        topbar
+        </div>
+        <div>
+        feed
+        </div>
+        <div>
+        buttonbar
+        </div>
+    </div>
+    <div>
+    newsletter
+    </div>
+</div>
 {% endblock %}
