@@ -117,6 +117,7 @@ TEMPLATE_DIRS = (
 INSTALLED_APPS = (
     'events',
     'core',
+    'info',
    'django.contrib.auth',
    'django.contrib.contenttypes',
    'django.contrib.sessions',

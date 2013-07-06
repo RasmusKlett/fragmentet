@@ -1,36 +1,13 @@
-/*
-function setsubpage(e, path) {
-    if (path==null){
-        path = '';
-    }
-    var xmlhttp;
-    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    }
-    else {// code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var headerindex = xmlhttp.responseText.indexOf("__AJAX__");
-            if (headerindex != -1) {
-                var pageTitle = xmlhttp.responseText.substring(0,headerindex);
-                var content = xmlhttp.responseText.substring(headerindex + 9);
-                document.title = pageTitle;
-                $("#content").html(content);
-                window.history.pushState({"content":content,"pageTitle":pageTitle},"", path);
-            }
-            else {
-                window.location = path
-            }
-        }
-    }
-    xmlhttp.open("GET", path, true);
-    xmlhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xmlhttp.send();
-    e.preventDefault();
+function initsubpage() {
+    console.log("initsubpage");
+    $("#tabs").tabs();
+    $(".local").click(function(e) {
+        if (!e.ctrlKey)
+            console.log("local link");
+            setsubpage(e, $(this).attr("href"));
+    });
 }
-*/
+
 function setsubpage(e, path) {
     if (path==null){
         path = '';
@@ -46,6 +23,7 @@ function setsubpage(e, path) {
                 var content = response.substring(headerindex + 9);
                 document.title = pageTitle;
                 $("#content").html(content);
+                initsubpage();
                 window.history.pushState({"content":content,"pageTitle":pageTitle},"", path);
             }
             else {
@@ -67,4 +45,5 @@ $(document).ready(function() {
         if (!e.ctrlKey)
             setsubpage(e, $(this).attr("href"));
     });
+    initsubpage();
 });

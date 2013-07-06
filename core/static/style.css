@@ -1,5 +1,6 @@
 body {
-    background-color: #262222;
+    background-image:url('/static/background-texture.jpg');
+    /*background-color: #262222;*/
     font-size: .85em;
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
     margin: 0;
@@ -8,6 +9,7 @@ body {
 }
 
 #parentdiv {
+    box-shadow: 0px 0px 80px -10px black;
     background-color: white;
     width: 1000px;
     margin-left: auto;
@@ -17,13 +19,16 @@ body {
 .wrap {
     width: 100%;
     clear: both;
+    padding: 0;
 }
 
 #nav-global {
-    position: absolute;
+    position: static;
     display: block;
     white-space: nowrap;
     padding-left: 0;
+    height: 23px;
+    text-align: justify;
     
 }
 
@@ -31,23 +36,55 @@ body {
     color: #7D0400;
     font: "serif";
     font-size: 1.5em;
-    display: block;
-    float:left;
+    display: inline-block;
     list-style-type: none;
-    margin:0;
-    padding:0;
+    border:solid;
+    border-width: 5px;
+    width:auto;
 }
 #nav-global a {
     text-align: center;
-    padding: 0 20px;
+}
+/*
+.nav-sub {
+    position: static;
+    display: block;
+    white-space: nowrap;
+    padding-left: 0;
+    height: 23px;
+    
+    
 }
 
+.nav-sub li {
+    color: #7D0400;
+    font: "serif";
+    font-size: 1.5em;
+    display: list-item;
+    float:left;
+    list-style-type: none;
+    border:solid;
+    border-width: 2px;
+}
+.nav-sub a {
+    text-align: center;
+    padding: 0 31px;
+}
+*/
+
 #header {
-    position: relative;
-    display: block;
-    height: 50px;
+    height: 400px;
 }
 
 #content {
+    padding-left: 30px;
+    padding-right: 30px;
     display: block;
+}
+
+.stretch {
+    width: 100%;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0
 }

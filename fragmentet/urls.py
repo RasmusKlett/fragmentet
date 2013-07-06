@@ -2,18 +2,21 @@ from django.conf.urls import patterns, include, url
 #from fragmentet.views import hello, current_datetime, hours_ahead
 # from events import views
 import events.views
-import core.views
+import info.views
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('', 
-    url(r'^$', core.views.mainpage),
-    url(r'^events$', events.views.mainpage),
-    #url(r'^hello/$', hello),
-    #url(r'^time/$', current_datetime),
-    #url(r'^time/plus/(\d{1,2})/$', hours_ahead),
+    url(r'^$', info.views.mainpage),
+    url(r'^aktuelt/?$', events.views.list),
+    url(r'^aktuelt/(\w+)/?$', events.views.view_event),
+    url(r'^teatret/?$', info.views.about),
+    url(r'^arkiv/?$', events.views.archive),
+    url(r'^medlemskab/?$', info.views.membership),
+    url(r'^kontakt/?$', info.views.contact),
+
 
     # Examples:
     # url(r'^$', 'fragmentet.views.home', name='home'),
