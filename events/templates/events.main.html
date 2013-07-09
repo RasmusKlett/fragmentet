@@ -8,29 +8,35 @@
     {{ event.name }}
     </h3>
     <strong>
-    {{ event.type }} i {{ event.location }} d. {{ event.time }}
+    Intim teaterkoncert D.21 - D.26 juni kl 19:00 i Medborgersalen
+   <!-- {{ event.type }} i {{ event.location }} d. {{ event.time }}-->
     </strong>
-    <div class= "eventbox" id="event-content">
+    <hr>
+    <div id="event-content">
+        <div id= "event-picture">    
+            <img src={% static 'eksempel.jpg' %} alt="Frontpage_Cover" height="330px" />
+        </div>
         <div id= "event-description">
             {{ event.description }}
         </div>
-        <div class= "eventbox" id= "event-picture">
-        <img src={% static 'eksempel.jpg' %} />
-        </div>
     </div>
 </div>
-<div id ="news">
-    <div id ="newsfeed">
+<div id="news">
+    <div id="newsfeed">
         <div id= "topbar">
             <p> Seneste nyt fra Fragmentet </p>
         </div>
         <div id= "nwbody">
             <!--newsfeed-->
+            <div class="fbpost">
+               <h4>Torsdag D. 4 juli</h4>
+               <p>Husk at k?be billetter til vores koncert naeste uge! Billetter kan k?bes i d?ren.</p>
         </div>
-        <div id= "buttonbar">
+        <div id= "bottombar">
+            <p> Se flere nyheder </p>
         </div>
     </div>
-    <div id ="newsletter">
+    <div id="newsletter">
     </div>
 </div>
 {% endblock %}
