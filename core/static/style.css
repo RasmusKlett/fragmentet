@@ -88,3 +88,45 @@ body {
     font-size: 0;
     line-height: 0
 }
+
+/* Main */
+
+#event {
+    width:850px;
+    .left
+    display: inline;
+}
+
+#news {
+    width:100px;
+    .right
+    display: inline;
+}
+
+#event-content {
+    width:100px;
+}
+
+#topbar {
+    text-align:center;
+}
+
+#eventbox {
+    display:inline;
+}
+
+#event-description {
+    width: 300px;
+}
+
+#event-picture {
+    width: 200px;
+    z-index:-1;
+    
+     
+}
+
+#event-picture img {
+    width:180px;
+}
+

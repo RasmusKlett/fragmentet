@@ -2,39 +2,35 @@
 
 {% block title %}Fragmentet{% endblock %}
 {% block content %} 
+{% load staticfiles %}
 <div id="event">
     <h3>
-    title(fra db)
+    {{ event.name }}
     </h3>
-    <div>
-    underline(fra db)
-    </div>
-    <div>
-    event-content
-        <div>
-        text(fra db)
+    <strong>
+    {{ event.type }} i {{ event.location }} d. {{ event.time }}
+    </strong>
+    <div class= "eventbox" id="event-content">
+        <div id= "event-description">
+            {{ event.description }}
         </div>
-        <div>
-        picture
+        <div class= "eventbox" id= "event-picture">
+        <img src={% static 'eksempel.jpg' %} />
         </div>
     </div>
 </div>
 <div id ="news">
-News
-    <div>
-    newsfeed
-        <div>
-        topbar
+    <div id ="newsfeed">
+        <div id= "topbar">
+            <p> Seneste nyt fra Fragmentet </p>
         </div>
-        <div>
-        feed
+        <div id= "nwbody">
+            <!--newsfeed-->
         </div>
-        <div>
-        buttonbar
+        <div id= "buttonbar">
         </div>
     </div>
-    <div>
-    newsletter
+    <div id ="newsletter">
     </div>
 </div>
 {% endblock %}
