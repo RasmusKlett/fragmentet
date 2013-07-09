@@ -10,14 +10,21 @@ facebookdata = None
 
 def get_wall_posts():
     f = open('events/facebook_token.txt', 'r+')
+    print 1
     access_token = f.read()[:-1]
+    print access_token
+    print 2
     graph = facebook.GraphAPI(access_token)
+    print 3
     posts = graph.request("126467437553756", {"fields":"posts.fields(type,status_type,story,message,link,caption,created_time)", "locale":"da_DK"})
+    print 5
     data = posts["posts"]["data"]
+    print 6
     # Convert dates to struct_time objects
     for post in data:
         # post["created_time"] = datetime.fromtimestamp(time.mktime(time.strptime(post["created_time"], "%Y-%m-%dT%H:%M:%S+0000")))
         post["created_time"] = datetime.strptime(post["created_time"], "%Y-%m-%dT%H:%M:%S+0000")
+    print 7
     return data
     
 
@@ -25,8 +32,8 @@ def main(request):
     posts = None
     try:
         posts = get_wall_posts()
-    except e:
-       print e
+    except Exception as e:
+       print "FBError:", e
     event = get_object_or_404(Coming_event,name='Backstage')
     return render(request, 'events.main.html', {'event': event, 'posts':posts})
 
