@@ -73,70 +73,17 @@ body {
 */
 
 #header {
-    height: 250px;
+    height: 400px;
 }
 
 #content {
-    padding-left: 30px;
-    padding-right: 30px;
-    position: relative;
+    padding-left: 3em;
+    display: block;
 }
 
 .stretch {
     width: 100%;
     display: inline-block;
     font-size: 0;
-    line-height:
-    width:450px;
-    left: 0px; 
-    position:absolute
-    display: inline;
-}
-
-#news {
-    background-color: #BDBCBC;
-    border: 2px solid #848484;
-    float: right;
-    width: 240px;
-    height: 350px;
-    display:inline;
-}
-
-#event {
-    display:inline-block;
-    width: 300px;
-}
-
-#event-picture {
-    display:inline;
-    position:absolute;
-    top: 55px;
-    left: 370px;
-}
-
-#topbar {
-    text-align: center;
-    border-bottom: 1px solid #848484;
-    height: 15px;
-}
-
-#bottombar {
-    height: 15px;
-    border-top: 1px solid #848484;
-    text-align: center;
-}
-
-#event strong {
-    position:absolute;
-    top: 32px;
-}
-
-#event hr {
-    position:absolute;
-    top: 35px;
-}
-
-#nwbody {
-    height: 320px;
-    padding 0 10px;
+    line-height: 0
 }

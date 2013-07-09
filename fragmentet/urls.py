@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
-#from fragmentet.views import hello, current_datetime, hours_ahead
-# from events import views
+from django.conf.urls.static import static
+from django.conf import settings
 import events.views
 import info.views
 
@@ -28,4 +28,5 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
