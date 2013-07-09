@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^arkiv/?$', events.views.archive_list),
     url(r'^medlemskab/?$', info.views.membership),
     url(r'^kontakt/?$', info.views.contact),
+    (r'^photologue/', include('photologue.urls')),
 
 
     # Examples:
