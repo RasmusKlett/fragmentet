@@ -4,6 +4,7 @@ from events.models import *
 import facebook
 import os
 import time
+from datetime import datetime
 
 facebookdata = None
 
@@ -15,7 +16,8 @@ def get_wall_posts():
     data = posts["posts"]["data"]
     # Convert dates to struct_time objects
     for post in data:
-        post["created_time"] = time.strptime(post["created_time"], "%Y-%m-%dT%H:%M:%S+0000")
+        # post["created_time"] = datetime.fromtimestamp(time.mktime(time.strptime(post["created_time"], "%Y-%m-%dT%H:%M:%S+0000")))
+        post["created_time"] = datetime.strptime(post["created_time"], "%Y-%m-%dT%H:%M:%S+0000")
     return data
     
 

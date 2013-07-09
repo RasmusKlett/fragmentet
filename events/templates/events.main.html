@@ -28,9 +28,24 @@
         </div>
         <div id= "nwbody">
             <!--newsfeed-->
-            <div class="fbpost">
-               <h4>Torsdag D. 4 juli</h4>
-               <p>Husk at k?be billetter til vores koncert naeste uge! Billetter kan k?bes i d?ren.</p>
+        {% for post in posts %}
+            <a href={{ post.link|default:"https://www.facebook.com/MusikOgTeaterforeningenFragmentet"}} target="_blank" class="fbpost">
+               <h4>{{ post.created_time|date:"l j. F"}}</h4>
+               <p>
+               {% if post.message %} 
+                   {% if post.message|length > 105 %}
+                   {{ post.message|truncatechars:100 }}
+                   {% else %}
+                   {{ post.message }}
+                   {% endif %}
+               {% elif post.caption %}
+               {{ post.caption|capfirst}}
+               {% else %}
+               {{ post.story|capfirst}}
+               {% endif %}
+               </p>
+            </a>
+        {% endfor %}
         </div>
         <div id= "bottombar">
             <p> Se flere nyheder </p>
