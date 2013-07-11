@@ -115,6 +115,13 @@ body {
     padding-right: 30px;
     position: relative;
     background-color: #E7E6DF;
+=======
+    height: 400px;
+}
+
+#content {
+    padding-left: 3em;
+    display: block;
 }
 
 .stretch {
@@ -234,4 +241,5 @@ body {
 
 #clear {
     clear:both;
+    line-height: 0
 }
