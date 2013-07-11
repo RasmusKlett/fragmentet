@@ -5,16 +5,16 @@
 {% load staticfiles %}
 <div id="event">
     <h3>
-    {{ event.name }}
+        <a href="www.fragmentet.dk" target="_blank">{{ event.name }}</a>
     </h3>
     <strong>
     Intim teaterkoncert D.21 - D.26 juni kl 19:00 i Medborgersalen
    <!-- {{ event.type }} i {{ event.location }} d. {{ event.time }}-->
-    </strong>
     <hr>
+    </strong>
     <div id="event-content">
         <div id= "event-picture">    
-            <img src={% static 'eksempel.jpg' %} alt="Frontpage_Cover" height="330px" />
+            <a href="www.fragmentet.dk"><img src={% static 'eksempel.jpg' %} alt="Frontpage_Cover" height="330px" /></a>
         </div>
         <div id= "event-description">
             {{ event.description }}
@@ -45,13 +45,16 @@
                {% endif %}
                </p>
             </a>
+        {% empty %}
+        Der kunne desvaerre ikke hentes nyheder fra Facebook.
         {% endfor %}
         </div>
         <div id= "bottombar">
-            <p> Se flere nyheder </p>
+            <a href="http://www.facebook.com/MusikOgTeaterforeningenFragmentet" target="_blank">Se flere nyheder</a>
         </div>
     </div>
     <div id="newsletter">
     </div>
 </div>
+<div id="clear"></div>
 {% endblock %}
