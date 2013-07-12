@@ -2,3 +2,4 @@
 *.swp
 *.swo
 facebook_token.txt
+public/*
