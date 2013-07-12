@@ -16,7 +16,7 @@ def get_wall_posts():
     print 2
     graph = facebook.GraphAPI(access_token)
     print 3
-    posts = graph.request("126467437553756", {"fields":"posts.fields(type,status_type,story,message,link,caption,created_time)", "locale":"da_DK"})
+    posts = graph.request("126467437553756", {"fields":"posts.limit(4).fields(type,status_type,story,message,link,caption,created_time)", "locale":"da_DK"})
     print 5
     data = posts["posts"]["data"]
     print 6
