@@ -39,3 +39,4 @@ class Event_date(models.Model):
     class Meta:
         verbose_name = 'Dato'
         verbose_name_plural = 'Datoer'
+        get_latest_by = 'datetime'

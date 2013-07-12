@@ -1,8 +1,8 @@
 {% extends selected_template|default:"base.html" %}
 
-{% block title %}{{event.name}} - Fragmentet{% endblock %}
+{% block title %}{{event.title}} - Fragmentet{% endblock %}
 {% block content %}
-<h1>{{event.name}}</h1>
+<h1>{{event.title}}</h1>
 <div id="tabs">
     <ul>
         <li><a href="#tab-beskrivelse">Beskrivelse</a></li>
@@ -13,7 +13,7 @@
         {{event.description|safe}}
     </div>
     <div id="tab-medvirkende">
-        {{event.production}}
+        {{event.cast}}
     </div>
     <div id="tab-galleri">
         Ikke implementeret

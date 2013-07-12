@@ -29,12 +29,16 @@ def get_wall_posts():
     
 
 def main(request):
-    posts = None
-    try:
-        posts = get_wall_posts()
-    except Exception as e:
-       print "FBError:", e
-    event = get_object_or_404(Event,name='Backstage')
+    posts = facebookdata
+    print facebookdata
+    if not facebookdata:
+        try:
+            posts = get_wall_posts()
+        except Exception as e:
+           print "FBError:", e
+    event = get_object_or_404(Event,title='Backstage')
+    print event.coverimage.cache_url()
+    print event.coverimage.__dict__
     return render(request, 'events.main.html', {'event': event, 'posts':posts})
 
 def archive_list(request):
@@ -46,6 +50,6 @@ def archive_single(request):
 def current_list(request):
     return render(request, 'events.current_list.html', {'events':Event.objects.all()})
 
-def current_single(request, event_name):
-    event = get_object_or_404(Event,name=event_name)
+def current_single(request, event_title):
+    event = get_object_or_404(Event,title=event_title)
     return render(request, 'events.current_single.html', {'event': event})
