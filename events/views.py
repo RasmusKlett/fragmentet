@@ -50,6 +50,6 @@ def archive_single(request):
 def current_list(request):
     return render(request, 'events.current_list.html', {'events':Event.objects.all()})
 
-def current_single(request, event_title):
-    event = get_object_or_404(Event,title=event_title)
+def current_single(request, event_linkname):
+    event = get_object_or_404(Event,linkname=event_linkname)
     return render(request, 'events.current_single.html', {'event': event})
