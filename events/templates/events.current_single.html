@@ -8,6 +8,7 @@
         <li><a href="#tab-beskrivelse">Beskrivelse</a></li>
         <li><a href="#tab-medvirkende">Medvirkende</a></li>
         <li><a href="#tab-galleri">Galleri</a></li>
+        <li><a href="#tab-album">Album forhelved</a></li>
     </ul>
     <div id="tab-beskrivelse">
         {{event.description|safe}}
@@ -30,5 +31,20 @@
             {% endfor %}
         </div>
     </div>
+    <div id="tab-album">
+        <div id="album">
+            {% with gallery=event.galleries.latest %}
+            <h2>
+                {{ gallery.title }}
+            </h2>
+            <div id="grid-display">
+                {% for photo in gallery.photos.all %}
+                <img src={{ photo.get_thumbnail_url }}>
+                {% endfor  %}
+            </div>
+            {% endwith  %}
+        </div>
+    </div>
 </div>
+<div class="clear">clear</div>
 {% endblock %}
