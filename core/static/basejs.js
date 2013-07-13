@@ -16,8 +16,13 @@ function setsubpage(e, path) {
         type: "GET",
         headers: {'X-Requested-With': 'XMLHttpRequest'},
         success: function (response) {
-            $("#nav-global a").attr('id', '');
-            e.target.setAttribute('id', 'nav-selected');
+            /*
+            var target = $(e.target)
+            if (!target.hasClass('local')) {
+                $("#nav-global a").attr('id', '');
+                target.attr('id', 'nav-selected');
+            }
+            */
             var headerindex = response.indexOf("__AJAX__");
             if (headerindex != -1) {
                 var pageTitle = response.substring(0,headerindex);
@@ -26,6 +31,7 @@ function setsubpage(e, path) {
                 $("#content").html(content);
                 initsubpage();
                 window.history.pushState({"content":content,"pageTitle":pageTitle},"", path);
+                setNavSelected(window.location.pathname);
             }
             else {
                 window.location = path;
@@ -41,12 +47,13 @@ window.onpopstate = function(e){
     }
 };
 
-function getParentPath(path) {
+function setNavSelected(path) {
     var secondSlash = path.substr(1).indexOf('/')
     if (secondSlash > 0)
         path = path.substr(0,secondSlash + 1);
     console.log('path: ' + path);
-    return path.toLowerCase()
+    $("#nav-global a").attr('id', '');
+    $('#nav-global a[href="' + path + '"]').attr('id', 'nav-selected');
 }
 
 $(document).ready(function() {
@@ -54,7 +61,6 @@ $(document).ready(function() {
         if (!e.ctrlKey)
             setsubpage(e, $(this).attr("href"));
     });
-    var parentPath = getParentPath(window.location.pathname);
-    $('#nav-global a[href="' + parentPath + '"]').attr('id', 'nav-selected');
+    setNavSelected(window.location.pathname);
     initsubpage();
 });
