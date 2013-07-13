@@ -13,10 +13,22 @@
         {{event.description|safe}}
     </div>
     <div id="tab-medvirkende">
-        {{event.cast}}
+        {{event.cast|safe}}
     </div>
     <div id="tab-galleri">
-        Ikke implementeret
-    </div}
+        <div id="galleri"> 
+            {% for gallery in event.galleries.all %}
+            <h3>
+                "{{ gallery.title }}" album
+            </h3>
+            <div id="gallery-list">
+                <ul>
+                    {% for photo in gallery.sample %}
+                    <li><img src={{ photo.get_thumbnail_url }}></li>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 {% endblock %}
