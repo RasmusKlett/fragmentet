@@ -242,7 +242,7 @@ body {
     color: #E7E6DF;
 }
 
-#clear {
+.clear {
     clear:both;
     line-height: 0
 }
@@ -261,5 +261,10 @@ body {
     display:inline;
 }
 
+#album img {
+    padding: 1px 1px;
+}
 
-
+#grid-display {
+    margin-left: 45px;
+}
