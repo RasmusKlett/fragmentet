@@ -8,7 +8,7 @@
         <a href={% url events.views.current_single event.linkname %} class='local'>{{ event.title }}</a>
     </h3>
     <strong>
-   {{ event.event_type }} i {{ event.address }} d. {{ event.dates.latest.datetime }}
+   {{ event.event_type }} - d. {{ event.dates.latest.datetime }}
     <hr>
     </strong>
     <div id="event-content">
@@ -52,8 +52,10 @@
             <a href="http://www.facebook.com/MusikOgTeaterforeningenFragmentet" target="_blank">Se flere nyheder</a>
         </div>
     </div>
-    <div id="newsletter">
-    </div>
 </div>
-<div id="clear"></div>
+<div id="newsletter">
+    <p>Tilmed dig nyhedsbreve fra fragmentet her:</p>
+    <a href="nyhedsbrevmedbørneporno">Nyhedsbrev</a>
+</div>
+<div class="clear"></div>
 {% endblock %}
