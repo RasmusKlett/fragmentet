@@ -6,6 +6,7 @@ import os
 import time
 from datetime import datetime
 from django.core.cache import cache
+from photologue.models import Gallery, Photo
 
 
 def get_wall_posts():
@@ -43,3 +44,7 @@ def current_list(request):
 def current_single(request, event_linkname):
     event = get_object_or_404(Event,linkname=event_linkname)
     return render(request, 'events.current_single.html', {'event': event})
+
+def show_gallery(request, event_linkname, gallery_title_slug):
+    gallery = Gallery.objects.prefetch_related('photos').get(title_slug=gallery_title_slug)
+    return render(request, 'events.show_gallery.html', {'linkname':event_linkname, 'gallery': gallery})

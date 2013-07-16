@@ -1,26 +1,25 @@
 {% extends selected_template|default:"base.html" %}
 
-{% block title %}{{event.title}} - Fragmentet{% endblock %}
+{% block title %}{{event.linkname}} - Fragmentet{% endblock %}
 {% block content %}
 <h1>{{event.title}}</h1>
 <div id="tabs">
     <ul>
-        <li><a href="#tab-beskrivelse">Beskrivelse</a></li>
-        <li><a href="#tab-medvirkende">Medvirkende</a></li>
-        <li><a href="#tab-galleri">Galleri</a></li>
-        <li><a href="#tab-album">Album forhelved</a></li>
+        <li><a href="#tab-description">Beskrivelse</a></li>
+        <li><a href="#tab-cast">Medvirkende</a></li>
+        <li><a href="#tab-gallery">Galleri</a></li>
     </ul>
-    <div id="tab-beskrivelse">
+    <div id="tab-description">
         {{event.description|safe}}
     </div>
-    <div id="tab-medvirkende">
+    <div id="tab-cast">
         {{event.cast|safe}}
     </div>
-    <div id="tab-galleri">
+    <div id="tab-gallery">
         <div id="galleri"> 
             {% for gallery in event.galleries.all %}
             <h3>
-                "{{ gallery.title }}" album
+                <a class='gallery-link' href={% url events.views.show_gallery event.linkname gallery.title_slug %}> "{{ gallery.title }}" album </a>
             </h3>
             <div id="gallery-list">
                 <ul>
@@ -29,20 +28,6 @@
                 {% endfor %}
             </div>
             {% endfor %}
-        </div>
-    </div>
-    <div id="tab-album">
-        <div id="album">
-            {% with gallery=event.galleries.latest %}
-            <h2>
-                {{ gallery.title }}
-            </h2>
-            <div id="grid-display">
-                {% for photo in gallery.photos.all %}
-                <img src={{ photo.get_thumbnail_url }}>
-                {% endfor  %}
-            </div>
-            {% endwith  %}
         </div>
     </div>
 </div>

@@ -1,0 +1,14 @@
+{% extends selected_template|default:"base.html" %}
+
+{% block title %}{% endblock %}
+{% block content %}
+<a class="local" href={% url events.views.current_single linkname %}>Tilbage</a>
+<h2>
+    {{ gallery.title }}
+</h2>
+<div id="grid-display">
+    {% for photo in gallery.photos.all %}
+    <a class='gallery' href={{photo.get_display_url }}><img src={{ photo.get_thumbnail_url }}></a>
+    {% endfor  %}
+</div>
+{% endblock %}
