@@ -11,7 +11,7 @@ admin.autodiscover()
 urlpatterns = patterns('', 
     url(r'^$', events.views.main),
     url(r'^aktuelt/?$', events.views.current_list),
-    url(r'^aktuelt/(\w+)/?$', events.views.current_single),
+    url(r'^aktuelt/([-\w]+)/?$', events.views.current_single),
     url(r'^om-teatret/?$', info.views.about),
     url(r'^arkiv/?$', events.views.archive_list),
     url(r'^medlemskab/?$', info.views.membership),

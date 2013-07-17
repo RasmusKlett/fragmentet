@@ -2,10 +2,33 @@
 
 {% block title %}Forestillinger - Fragmentet{% endblock %}
 {% block content %} 
-<h1>Forestillinger</h1>
-<ul>
-    {% for event in events %}
-        <li><a class="local" href="{% url events.views.current_single event.title %}">{{event.title}}</a></li>
-    {% endfor %}
-</ul>
+{% if shows %}
+    <h2>Forestillinger</h2>
+    <ul>
+        {% for show in shows %}
+        <li><a class="local" href="{% url events.views.current_single show.linkname %}">{{show.title}}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Der er ingen aktuelle forstillinger</p>    
+{% endif %}
+
+{% if workshops %}
+    <h2>Workshops</h2>
+    <ul>
+        {% for workshop in workshops %}
+        <li><a class"local" href="{% url events.views.current_single workshop.linkname %}">{{workshop.title}}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if auditions %}
+    <h2>Auditions</h2>
+    <ul>
+        {% for audition in auditions %}
+        <li><a class="local" href="{% url events.views.current_single audition.linkname %}">{{audition.title}}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 {% endblock %}
