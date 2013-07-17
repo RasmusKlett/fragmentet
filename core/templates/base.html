@@ -2,13 +2,21 @@
 <html lang="en">
 <head>
     {% load staticfiles %}
-    <link rel="stylesheet" href={% static 'style.css'%} />
     <link href='http://googleapis.com/css?family=Noto+Serif' rel='stylesheet' type='text/css'>
     <title>{% block title %}Fragmentet{% endblock %}</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+
+    <!-- js and css for tabs -->
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
+    <!-- Colorbox js and css for gallery -->
+    <script src={% static 'jquery.colorbox-min.js' %}></script>
+    <link rel="stylesheet" href={% static 'colorbox.css' %} />
+
+    <!-- Base js and css -->
     <script src={% static 'basejs.js' %}></script>
+    <link rel="stylesheet" href={% static 'style.css'%} />
     </script>
 </head>
 <body>

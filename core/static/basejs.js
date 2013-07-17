@@ -1,10 +1,16 @@
 function initsubpage() {
+    console.log('initsubpage');
     $("#tabs").tabs();
+    $("a.gallery-link").click(function(e){
+        path = $(this).attr('href');
+        loadGallery(e, path)
+    });
     $(".local").click(function(e) {
         if (!e.ctrlKey)
             console.log("local link");
             setsubpage(e, $(this).attr("href"));
     });
+    jQuery('a.gallery').colorbox({rel:'gallery'});
 }
 
 function setsubpage(e, path) {
@@ -16,13 +22,6 @@ function setsubpage(e, path) {
         type: "GET",
         headers: {'X-Requested-With': 'XMLHttpRequest'},
         success: function (response) {
-            /*
-            var target = $(e.target)
-            if (!target.hasClass('local')) {
-                $("#nav-global a").attr('id', '');
-                target.attr('id', 'nav-selected');
-            }
-            */
             var headerindex = response.indexOf("__AJAX__");
             if (headerindex != -1) {
                 var pageTitle = response.substring(0,headerindex);
@@ -40,6 +39,33 @@ function setsubpage(e, path) {
     });
     e.preventDefault();
 }
+
+function loadGallery(e, path) {
+    if (!e.ctrlKey) {
+        $.ajax({
+            url: path, 
+            type: 'GET',
+            success: function (response) {
+                var headerindex = response.indexOf("__AJAX__");
+                if (headerindex != -1) {
+                    var pageTitle = response.substring(0,headerindex);
+                    var content = response.substring(headerindex + 9);
+                    document.title = pageTitle;
+                    $("#galleri").hide();
+                    $("#tab-gallery").append(content);
+                    initsubpage();
+                    window.history.pushState({"content":content,"pageTitle":pageTitle},"", path);
+                    setNavSelected(window.location.pathname);
+                }
+                else {
+                    window.location = path;
+                }
+            }
+        });
+        e.preventDefault();
+    }
+}
+
 window.onpopstate = function(e){
     if(e.state){
         $("content").html = e.state.content;
