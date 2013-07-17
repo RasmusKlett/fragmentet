@@ -39,7 +39,11 @@ def archive_single(request):
     return render(request, 'events.archive_single.html')
 
 def current_list(request):
-    return render(request, 'events.current_list.html', {'events':Event.objects.all()})
+    events= Event.objects.all()
+    shows = events.filter(category=0)
+    workshops = events.filter(category=1)
+    auditions = events.filter(category=2)
+    return render(request, 'events.current_list.html', {'shows':shows, 'workshops':workshops, 'auditions':auditions})
 
 def current_single(request, event_linkname):
     event = get_object_or_404(Event,linkname=event_linkname)
