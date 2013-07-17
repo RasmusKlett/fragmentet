@@ -386,3 +386,12 @@ h2 {
     width:350px;
     height:280px;
 }
+
+#loading-image {
+    top: 300px;
+    left: 550px;
+    width: 50px;
+    height: 50px;
+    position:absolute;
+    display:none;
+}
