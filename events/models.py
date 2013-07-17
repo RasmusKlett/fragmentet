@@ -37,9 +37,10 @@ class Event(models.Model):
 
 
 class Event_date(models.Model):
-    event = models.ForeignKey(Event, related_name='dates')
+    event = models.ForeignKey(Event, related_name='alldates')
     datetime = models.DateTimeField(verbose_name='Tilføj mindst startdatoen')
     class Meta:
         verbose_name = 'Dato'
         verbose_name_plural = 'Datoer'
         get_latest_by = 'datetime'
+        ordering = ['-datetime']

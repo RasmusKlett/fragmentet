@@ -2,33 +2,67 @@
 
 {% block title %}Forestillinger - Fragmentet{% endblock %}
 {% block content %} 
+        <h2>Forestillinger</h2>
 {% if shows %}
-    <h2>Forestillinger</h2>
-    <ul>
-        {% for show in shows %}
-        <li><a class="local" href="{% url events.views.current_single show.linkname %}">{{show.title}}</a></li>
-        {% endfor %}
-    </ul>
+    <div class="tablefield">
+        <ul>    
+            {% for show in shows %}
+            <a class="local" href="{% url events.views.current_single show.linkname %}">
+                <li>
+                <img src="{{ show.coverimage.get_thumbnail_url }}">
+                <h3>{{show.title}}</h3>
+                {% if show.dates.count = 1 %}
+                    <p>{{show.event_type}} <br> d. {{show.dates.latest.datetime|date:"j. F Y"}}</p>
+                {% elif show.dates.count > 1 %}
+                    <p>{{show.event_type}} <br> d. {{show.dates.earliest.datetime|date:"j. f"}} til d. {{show.dates.latest.datetime|date:"j. F Y"}}</p>
+                {% endif  %}
+                </li>
+            </a>
+            {% endfor %}
+        </ul>
+    </div>
 {% else %}
     <p>Der er ingen aktuelle forstillinger</p>    
 {% endif %}
 
 {% if workshops %}
     <h2>Workshops</h2>
-    <ul>
-        {% for workshop in workshops %}
-        <li><a class"local" href="{% url events.views.current_single workshop.linkname %}">{{workshop.title}}</a></li>
-        {% endfor %}
-    </ul>
+    <div class="tablefield">
+        <ul>    
+            {% for workshop in workshops %}
+            <a class="local" href="{% url events.views.current_single workshop.linkname %}">
+                <li>
+                <img src="{{ workshop.coverimage.get_thumbnail_url }}">
+                <h3>{{workshop.title}}</h3>
+                {% if workshop.alldates.count = 1 %}
+                    <p>{{workshop.event_type}} <br> d. {{workshop.alldates.latest.datetime|date:"j. F Y"}}</p>
+                {% elif workshop.alldates.count > 1 %}
+                    <p>{{workshop.event_type}} <br> d. {{workshop.alldates.first.datetime|date:"j. F"}} til d. {{workshop.dates.last.datetime|date:"j. F Y"}}</p>
+                {% endif  %}
+                </li>
+            </a>
+            {% endfor %}
+        </ul>
+    </div>
 {% endif %}
-
-{% if auditions %}
+{% if auditions and current %}
     <h2>Auditions</h2>
-    <ul>
-        {% for audition in auditions %}
-        <li><a class="local" href="{% url events.views.current_single audition.linkname %}">{{audition.title}}</a></li>
-        {% endfor %}
-    </ul>
+    <div class="tablefield">
+        <ul>    
+            {% for audition in auditions %}
+            <a class="local" href="{% url events.views.current_single audition.linkname %}">
+                <li>
+                <img src="{{ audition.coverimage.get_thumbnail_url }}">
+                <h3>{{audition.title}}</h3>
+                {% if audition.dates.count = 1 %}
+                    <p>{{audition.event_type}} <br> d. {{audition.dates.latest.datetime|date:"j. F Y"}}</p>
+                {% elif audition.dates.count > 1 %}
+                    <p>{{audition.event_type}} <br> d. {{audition.dates.first.datetime|date:"j. F"}} til d. {{audition.dates.last.datetime|date:"j. F Y"}}</p>
+                {% endif  %}
+                </li>
+            </a>
+            {% endfor %}
+        </ul>
+    </div>
 {% endif %}
-
 {% endblock %}

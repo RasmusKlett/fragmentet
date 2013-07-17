@@ -54,10 +54,11 @@ body {
 #nav-global a:hover {
     color: #E7E6DF;
     background-color: #89273A;
+    text-decoration: underline;
 }
 
 #nav-global a:active {
-    background-color: #BE9C45;
+    background-color: #303030;
 }
 
 #nav-global a {
@@ -79,8 +80,8 @@ body {
     box-shadow: none;
 }
 #nav-global #nav-selected:hover{
-    background-color: #89273A;
-    color: #E7E6DF;
+    color: #89273A;
+    text-decoration: underline;
     box-shadow: none;
 }
 
@@ -136,7 +137,17 @@ body {
     display: inline;
 }
 
-/* Forside */
+        /* Global */
+
+
+p,a,h1,h2,h3,h4 {
+    color: #303030;
+}
+
+
+        /* Forside */
+
+
 
 #news {
     background-color: #89273A;
@@ -168,6 +179,7 @@ body {
 
 #event h3 a:hover {
     color: #89273A;
+    text-decoration: underline;
 }
 
 #event-content {
@@ -191,11 +203,14 @@ body {
 
 #topbar {
     text-align: center;
-    color: #BE9C45;
-    font: Noto serif;
-    font-weight: bold;
     border-bottom: 0px solid #848484;
     height: 25px;
+}
+
+#topbar p {
+    font: Noto serif;
+    font-weight: bold;
+    color: #BE9C45;
 }
 
 #bottombar {
@@ -213,13 +228,14 @@ body {
 }
 
 #bottombar a:hover {
-    color: #89273A;
+    text-decoration: underline;
 }
 
 #event strong {
     position:absolute;
     top: 48px;
     width:660px;
+    color: #89273A;
 }
 
 #nwbody {
@@ -267,6 +283,10 @@ body {
     padding: -20px 0px;
 }
 
+#newsletter a:hover {
+    text-decoration:underline;
+}
+
 #newsletter p {
     color: #E7E6DF;
 }
@@ -275,7 +295,11 @@ body {
     clear: both;
 }
 
-/* aktuelt single */
+
+
+        /* aktuelt single */
+
+
 
 #gallery-info h3 {
     padding-left: 20px;
@@ -295,4 +319,71 @@ body {
 
 #grid-display {
     margin-left: 45px;
+}
+
+
+        /* event liste */
+
+h2 {
+    color: #303030;
+}
+
+.tablefield {
+    margin:10px;
+}
+
+.tablefield ul {
+    list-style-type: none;
+    width: 500px;
+}
+
+.tablefield li {
+    padding: 5px;
+    overflow: auto;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+.tablefield img {
+    float:left;
+    margin: 0px 15px 0px 0px;
+}
+
+.tablefield p {
+    color: #303030;  
+}
+
+.tablefield h3 {
+    color: #303030;
+}
+
+.tablefield a {
+    text-decoration:none;
+}
+
+.tablefield li:hover {
+    background-color: #D0CFC9;
+}
+
+
+        /* Om teatret */
+
+
+#about {
+    margin-top: 30px;
+}
+
+#about-text {
+     display:inline-block;
+     width: 500px;
+     margin-left: 20px;
+     margin-bottom: 90px;
+}
+
+#about img {
+    margin-top: 30px;
+    float:right;
+    display:inline;
+    width:350px;
+    height:280px;
 }

@@ -43,7 +43,7 @@ def current_list(request):
     shows = events.filter(category=0)
     workshops = events.filter(category=1)
     auditions = events.filter(category=2)
-    return render(request, 'events.current_list.html', {'shows':shows, 'workshops':workshops, 'auditions':auditions})
+    return render(request, 'events.current_list.html', {'shows':shows, 'workshops':workshops, 'auditions':auditions, 'current':True})
 
 def current_single(request, event_linkname):
     event = get_object_or_404(Event,linkname=event_linkname)

@@ -16,14 +16,14 @@
             <a href={% url events.views.current_single event.linkname %} class='local'><img src={{ event.coverimage.get_display_url }} alt="Frontpage_Cover" height="330px" /></a>
         </div>
         <div id= "event-description">
-            {{ event.description }}
+            <p>{{ event.description }}</p>
         </div>
     </div>
 </div>
 <div id="news">
     <div id="newsfeed">
         <div id= "topbar">
-            <p> Seneste nyt fra Fragmentet </p>
+            <p> Seneste nyt fra Fragmentet </h4>
         </div>
         <div id= "nwbody">
             <!--newsfeed-->
