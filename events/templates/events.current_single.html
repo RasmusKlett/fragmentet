@@ -16,7 +16,7 @@
         {{event.cast|safe}}
     </div>
     <div id="tab-gallery">
-        <div id="galleri"> 
+        <div id="gallery-info"> 
             {% for gallery in event.galleries.all %}
             <h3>
                 <a class='gallery-link' href={% url events.views.show_gallery event.linkname gallery.title_slug %}> "{{ gallery.title }}" album </a>
@@ -29,6 +29,7 @@
             </div>
             {% endfor %}
         </div>
+        <div id="gallery-view"></div>
     </div>
 </div>
 <div class="clear">clear</div>

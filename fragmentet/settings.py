@@ -125,6 +125,7 @@ INSTALLED_APPS = (
     # plugins
     'photologue',
     'south',
+    'tinymce',
 
     # django libs
     'django.contrib.auth',
@@ -184,4 +185,12 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
         'LOCATION': 'cache_table',
     }
+}
+
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': "advanced",
+    'relative_urls': False,
+    'height': 500,
+    'theme_advanced_buttons1' : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,fontsizeselect",
+    'theme_advanced_buttons2' : "undo,redo,code,|,link,bullist",
 }

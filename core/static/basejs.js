@@ -3,7 +3,12 @@ function initsubpage() {
     $("#tabs").tabs();
     $("a.gallery-link").click(function(e){
         path = $(this).attr('href');
-        loadGallery(e, path)
+        loadGallery(e, path);
+    });
+    $("a.gallery-back").click(function(e){
+        $("#gallery-info").show();
+        $("#gallery-view").hide();
+        e.preventDefault();
     });
     $(".local").click(function(e) {
         if (!e.ctrlKey)
@@ -51,10 +56,10 @@ function loadGallery(e, path) {
                     var pageTitle = response.substring(0,headerindex);
                     var content = response.substring(headerindex + 9);
                     document.title = pageTitle;
-                    $("#galleri").hide();
-                    $("#tab-gallery").append(content);
+                    $("#gallery-info").hide();
+                    $("#gallery-view").html(content).show();
                     initsubpage();
-                    window.history.pushState({"content":content,"pageTitle":pageTitle},"", path);
+                    window.history.pushState({"content":content,"pageTitle":pageTitle},"", window.location.pathname);
                     setNavSelected(window.location.pathname);
                 }
                 else {

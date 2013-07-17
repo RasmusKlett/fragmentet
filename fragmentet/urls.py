@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^medlemskab/?$', info.views.membership),
     url(r'^kontakt/?$', info.views.contact),
     (r'^photologue/', include('photologue.urls')),
+    (r'^tinymce/', include('tinymce.urls')),
 
 
     # Examples:
