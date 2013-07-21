@@ -3,7 +3,7 @@
 {% block title %}Fragmentet{% endblock %}
 {% block content %} 
 {% load staticfiles %}
-<div id="event">
+<div id="event" class="post">
     <h3>
         <a href={% url events.views.current_single event.linkname %} class='local'>{{ event.title }}</a>
     </h3>
@@ -12,18 +12,32 @@
     <hr>
     </strong>
     <div id="event-content">
-        <div id= "event-picture">    
+        <div id= "event-picture" class="fpicture">    
             <a href={% url events.views.current_single event.linkname %} class='local'><img src={{ event.coverimage.get_display_url }} alt="Frontpage_Cover" height="330px" /></a>
         </div>
-        <div id= "event-description">
+        <div id= "event-description" class="description">
             <p>{{ event.description }}</p>
         </div>
+    </div>
+</div>
+<div id="audition-content" class="post clear">
+    <h4>
+        <a href={% url events.views.current_single audition.linkname %} class='local'>{{ audition.title }}</a>
+    </h4>
+    <strong>
+        {{ event.event_type }} - d. {{ audition.dates.latest.datetime }}
+    </strong>
+    <div id="audition-picture" class="fpicture">
+        <a href={% url events.views.current_single audition.linkname %}  class='local'><img src={{ audition.coverimage.get_display_url }} alt="Audition_Cover" height="100px" /></a>
+    </div>
+    <div id="audition-description" class="description">
+        <p>{{ audition.description|safe}}</p>
     </div>
 </div>
 <div id="news">
     <div id="newsfeed">
         <div id= "topbar">
-            <p> Seneste nyt fra Fragmentet </h4>
+            <p> Seneste nyt fra Fragmentet </p>
         </div>
         <div id= "nwbody">
             <!--newsfeed-->

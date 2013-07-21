@@ -158,7 +158,7 @@ p,a,h1,h2,h3,h4 {
     display:inline;
 }
 
-#event {
+.post {
     display:inline-block;
     width: 300px;
 }
@@ -190,13 +190,16 @@ p,a,h1,h2,h3,h4 {
 }
 
 #event-picture {
-    display:inline;
-    position:absolute;
     top: 78px;
     left: 370px;
 }
 
-#event-picture:hover {
+.fpicture {
+    display:inline;
+    position:absolute;
+}
+
+.fpicture:hover {
     outline: 1.5px solid #89273A;
 }
 
@@ -288,6 +291,10 @@ p,a,h1,h2,h3,h4 {
 
 #newsletter p {
     color: #E7E6DF;
+}
+
+#audition-content {
+    display:block;
 }
 
 .clear {

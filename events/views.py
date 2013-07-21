@@ -30,7 +30,9 @@ def main(request):
         except Exception as e:
            print "FBError:", e
     event = get_object_or_404(Event,title='Backstage')
-    return render(request, 'events.main.html', {'event': event, 'posts':posts})
+    audition = Event.objects.filter(category=2).latest('alldates')
+    print audition
+    return render(request, 'events.main.html', {'event': event, 'posts':posts, 'audition':audition})
 
 def archive_list(request):
     return render(request, 'events.archive_list.html')
