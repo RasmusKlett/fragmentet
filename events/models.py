@@ -21,8 +21,6 @@ class Event(models.Model):
     info = HTMLField(null=True, blank=True, verbose_name='Praktisk info')
     address = models.CharField(max_length=128, null=True, blank=True, verbose_name='Adresse')
     ticket_link = models.URLField(null=True, blank=True, verbose_name='Billetlink')
-
-
     facebook_id = models.BigIntegerField(null=True, blank=True, help_text=u"<b>Udfyld kun, hvis eventet allerede er på facebook.</b> Dette er tallet i adressebaren på begivenhedens facebook-side.")
     coverimage = models.ForeignKey(Photo, default=Photo.objects.filter(title='default_cover')[0])
     galleries = models.ManyToManyField(Gallery, null=True, blank=True, verbose_name='Gallerier')
