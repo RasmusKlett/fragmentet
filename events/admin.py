@@ -10,7 +10,7 @@ class EventAdmin(admin.ModelAdmin):
     radio_fields = {'category':admin.VERTICAL}
     list_filter = ('category',)
     search_fields = ['title']
-    # fields = ('title', 'linkname', 'category', 'event_type', 'description', 'cast', 'info', 'address', 'ticket_link', 'facebook_id', 'coverimage', 'galleries', 'event__dates') 
+    filter_horizontal = ['galleries']
     inlines= [ EventDateInline]
 
 admin.site.register(Event, EventAdmin)
