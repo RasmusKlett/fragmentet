@@ -144,9 +144,12 @@ p,a,h1,h2,h3,h4 {
 }
 
 
+
         /* Forside */
 
-
+#post-frame {
+    display:inline-block;
+}
 
 #news {
     background-color: #89273A;
@@ -187,6 +190,7 @@ p,a,h1,h2,h3,h4 {
 
 #event-description {
     margin-top:85px;
+    height: 320px;
 }
 
 #event-picture {
@@ -276,6 +280,7 @@ p,a,h1,h2,h3,h4 {
     background-color: #303030;
     clear: right;
     padding-bottom: 10px;
+    display:inline;
 }
 
 #newsletter a {
@@ -295,6 +300,15 @@ p,a,h1,h2,h3,h4 {
 
 #audition-content {
     display:block;
+    width: 400px;
+}
+
+#audition-picture {
+    left: 510px;
+    top: 430px;
+}
+
+#audition-desription {
 }
 
 .clear {
