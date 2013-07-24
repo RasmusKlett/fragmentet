@@ -116,8 +116,8 @@ function loadGallery(e, path) {
 }
 
 window.onpopstate = function(e){
-    if(e.state){
-        $("content").html = e.state.content;
+    if(e.state && contentdiv.length > 0){
+        contentdiv.html(e.state.content)
         document.title = e.state.pageTitle;
     }
 };

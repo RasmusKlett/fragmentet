@@ -1,4 +1,5 @@
 {% extends selected_template|default:"base.html" %}
+{% load url from future %}
 
 {% block title %}Forestillinger - Fragmentet{% endblock %}
 {% block content %} 
@@ -7,7 +8,7 @@
     <div class="tablefield">
         <ul>    
             {% for show in shows %}
-            <a class="local" href="{% url events.views.current_single show.linkname %}">
+            <a class="local" href="{% url single_view show.linkname %}">
                 <li>
                 <img src="{{ show.coverimage.get_thumbnail_url }}">
                 <h3>{{show.title}}</h3>
@@ -30,7 +31,7 @@
     <div class="tablefield">
         <ul>    
             {% for workshop in workshops %}
-            <a class="local" href="{% url events.views.current_single workshop.linkname %}">
+            <a class="local" href="{% url single_view workshop.linkname %}">
                 <li>
                 <img src="{{ workshop.coverimage.get_thumbnail_url }}">
                 <h3>{{workshop.title}}</h3>
@@ -50,7 +51,7 @@
     <div class="tablefield">
         <ul>    
             {% for audition in auditions %}
-            <a class="local" href="{% url events.views.current_single audition.linkname %}">
+            <a class="local" href="{% url single_view audition.linkname %}">
                 <li>
                 <img src="{{ audition.coverimage.get_thumbnail_url }}">
                 <h3>{{audition.title}}</h3>

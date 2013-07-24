@@ -19,7 +19,7 @@
         <div id="gallery-info"> 
             {% for gallery in event.galleries.all %}
             <h3>
-                <a class='gallery-link' href={% url events.views.show_gallery event.linkname gallery.title_slug %}> "{{ gallery.title }}" album </a>
+                <a class='gallery-link' href={% url core.views.show_gallery event.linkname gallery.title_slug %}> "{{ gallery.title }}" album </a>
             </h3>
             <div id="gallery-list">
                 <ul>

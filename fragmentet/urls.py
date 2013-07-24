@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 import events.views
 import info.views
+import core.views
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -11,10 +12,11 @@ admin.autodiscover()
 urlpatterns = patterns('', 
     url(r'^$', events.views.main),
     url(r'^aktuelt/?$', events.views.current_list),
-    url(r'^aktuelt/([-\w]+)/([-\w]+)/?$', events.views.show_gallery),
     url(r'^aktuelt/([-\w]+)/?$', events.views.current_single),
-    url(r'^om-teatret/?$', info.views.about),
     url(r'^arkiv/?$', events.views.archive_list),
+    url(r'^arkiv/([-\w]+)/?$', events.views.archive_single),
+    url(r'^galleri/([-\w]+)/([-\w]+)/?$', core.views.show_gallery),
+    url(r'^om-teatret/?$', info.views.about),
     url(r'^medlemskab/?$', info.views.membership),
     url(r'^kontakt/?$', info.views.contact),
     (r'^photologue/', include('photologue.urls')),
@@ -32,3 +34,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+handler404 = 'core.views.error404'
+handler500 = 'core.views.error500'
