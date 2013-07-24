@@ -90,7 +90,7 @@ function setsubpage(e, path) {
 }
 
 function loadGallery(e, path) {
-    if (!e.ctrlKey) {
+    if (!e.ctrlKey && $("#tab-gallery").length > 0) {
         $.ajax({
             url: path, 
             type: 'GET',

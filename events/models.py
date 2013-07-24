@@ -3,7 +3,31 @@ from django.db import models
 from photologue.models import Gallery, Photo
 from tinymce.models import HTMLField
 from tinymce.widgets import TinyMCE
+from django.db import connection
 
+class EventManager(models.Model):
+    def _dbaccess(self, isCurrent):
+        op = '>' if isCurrent else '<'
+        cursor = connection.cursor()
+        cursor.execute("""
+            SELECT * FROM events_event
+            WHERE id IN 
+            (SELECT event_id FROM
+                (SELECT id, event_id, MAX(datetime) as datetime
+                FROM events_event_date
+                GROUP BY event_id) as dates
+            WHERE dates.datetime < NOW());""")
+        result_list = []
+        for row in cursor.fetchall():
+            pass
+        return True
+
+    def current_events(self):
+        return self._dbaccess(True)
+
+    def archive_events(self):
+        return self._dbaccess(False)
+        
 
 class Event(models.Model):
     title = models.CharField(max_length=64, verbose_name='Titel')
@@ -14,7 +38,7 @@ class Event(models.Model):
         (2, "Audition"),
     )
     category = models.PositiveSmallIntegerField(choices=CATEGORY_CHOICES, verbose_name='Kategori')
-    event_type = models.CharField(max_length=64, null=True, blank=True, help_text='F.eks. teaterkoncert, julekoncert eller ', verbose_name='Type')
+    event_type = models.CharField(max_length=64, null=True, blank=True, help_text='F.eks. teaterkoncert, intim koncert eller juleforestilling', verbose_name='Type')
     # description = HTMLField(widget=TinyMCE(attrs={'rows':30}), verbose_name='Beskrivelse')
     description = HTMLField(verbose_name='Beskrivelse')
     cast = HTMLField(null=True, blank=True, verbose_name='Medvirkende')
@@ -24,6 +48,11 @@ class Event(models.Model):
     facebook_id = models.BigIntegerField(null=True, blank=True, help_text=u"<b>Udfyld kun, hvis eventet allerede er på facebook.</b> Dette er tallet i adressebaren på begivenhedens facebook-side.")
     coverimage = models.ForeignKey(Photo, default=Photo.objects.filter(title='default_cover')[0])
     galleries = models.ManyToManyField(Gallery, null=True, blank=True, verbose_name='Gallerier')
+    objects = EventManager()
+
+    def last_date(self):
+        print self.alldates.last()
+        return self.alldates.last()
 
     def __unicode__(self):
         return self.title
