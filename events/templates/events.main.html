@@ -1,39 +1,43 @@
 {% extends selected_template|default:"base.html" %}
-
 {% block title %}Fragmentet{% endblock %}
 {% block content %} 
 {% load staticfiles %}
-<div id="event" class="post">
-    <h3>
-        <a href={% url events.views.current_single event.linkname %} class='local'>{{ event.title }}</a>
-    </h3>
-    <strong>
-   {{ event.event_type }} - d. {{ event.dates.latest.datetime }}
-    <hr>
-    </strong>
-    <div id="event-content">
-        <div id= "event-picture" class="fpicture">    
-            <a href={% url events.views.current_single event.linkname %} class='local'><img src={{ event.coverimage.get_display_url }} alt="Frontpage_Cover" height="330px" /></a>
+<div id="post-frame">
+    <div id="event" class="post">
+        <h3>
+            <a href={% url events.views.current_single event.linkname %} class='local'>{{ event.title }}</a>
+        </h3>
+        <strong>
+            {{ event.event_type }} - d. {{ event.dates.latest.datetime }}
+            <hr>
+        </strong>
+        <div id="event-content">
+            <div id= "event-picture" class="fpicture">    
+                <a href={% url events.views.current_single event.linkname %} class='local'><img src={{ event.coverimage.get_display_url }} alt="Frontpage_Cover" height="330px" /></a>
+            </div>
+            <div id= "event-description" class="description">
+                <p>{{ event.description }}</p>
+            </div>
         </div>
-        <div id= "event-description" class="description">
-            <p>{{ event.description }}</p>
+    </div>
+        {% if audition %}
+        <hr>
+        <div id="audition-content" class="post">
+            <h3>
+                <a href={% url events.views.current_single audition.linkname %} class='local'>{{ audition.title }}</a>
+            </h3>
+            <strong>
+                {{ event.event_type }} - d. {{ audition.dates.latest.datetime }}
+            </strong>
+            <div id="audition-picture" class="fpicture">
+                <a href={% url events.views.current_single audition.linkname %}  class='local'><img src={{ audition.coverimage.get_display_url }} alt="Audition_Cover" width="180px" /></a>
+            </div>
+            <div id="audition-description" class="description">
+                <p>{{ audition.description|safe}}</p>
+            </div>
         </div>
+{% endif %}
     </div>
-</div>
-<div id="audition-content" class="post clear">
-    <h4>
-        <a href={% url events.views.current_single audition.linkname %} class='local'>{{ audition.title }}</a>
-    </h4>
-    <strong>
-        {{ event.event_type }} - d. {{ audition.dates.latest.datetime }}
-    </strong>
-    <div id="audition-picture" class="fpicture">
-        <a href={% url events.views.current_single audition.linkname %}  class='local'><img src={{ audition.coverimage.get_display_url }} alt="Audition_Cover" height="100px" /></a>
-    </div>
-    <div id="audition-description" class="description">
-        <p>{{ audition.description|safe}}</p>
-    </div>
-</div>
 <div id="news">
     <div id="newsfeed">
         <div id= "topbar">
@@ -41,7 +45,7 @@
         </div>
         <div id= "nwbody">
             <!--newsfeed-->
-        {% for post in posts %}
+            {% for post in posts %}
             <a href={{ post.link|default:"https://www.facebook.com/MusikOgTeaterforeningenFragmentet"}} target="_blank" class="fbpost">
                <h4>{{ post.created_time|date:"l j. F"}}</h4>
                <p>
