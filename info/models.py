@@ -15,6 +15,7 @@ class Infopage(models.Model):
 
 class Infotext(models.Model):
     infopage = models.ForeignKey(Infopage, related_name='texts')
+    title = models.CharField(max_length=64, verbose_name='Titel')
     content = HTMLField(verbose_name='Indhold')
     class Meta:
         verbose_name = 'Tekst'
