@@ -2,23 +2,11 @@
 
 {% block title %}Medlemskab{% endblock %}
 {% block content %} 
-<div>
-
-Ikke implementeret <br/>
-Bliv medllem af Musik- & Teaterforeningen FRAGMENTET
-
-Foreningen tilbyder to typer medslemskab: Aktivt medlemskab og Passivt medlemskab
-
-Aktivt medlemskab:
-
-Som aktivt medlem har du mulighed for at deltage aktivt i alle foreningens aktiviteter, der vil dog forud for hver produktion være audition for de medlemmer der ønsker at deltage på scenen, denne audition gælder nye såvel som gamle medlemmer, for at opretholde foreningens ambitions niveau.Som aktivt medlem modtager du nyheder,information om auditions, beskeder fra bestyrelsen, invitation til workshops m.m  
-
-Aktivt medlemskab i Fragmentet koster 400 kr. årligt.
-
-Passivt medlemskab:
-
-Alle har mulighed for at opnå passivt medlemskab .Som passivt medlem har du mulighed for at støtte op om foreningen igennem et mindre kontingent. Denne medlemstype henvender sig til tidligere aktive medlemmer, venner, famille eller helt andre, der blot måtte ønske at holde sig orienteret og støtte op om foreningens forestillinger. Det er muligt at deltage i produktions-arbejde på forestillinger, samt deltage i diverse udvalg, men det er ingen forudsætning. Som passivt medlem modtager man nyheder,information om auditions, beskeder fra bestyrelsen, invitation til workshops m.m på lige fod med aktive medlemmer.
-
-Passivt medlemskab i Fragmentet koster 200 kr. årligt.
-</div>
+{{ active|safe }}
+<hr>
+{{ passive|safe }}
+<hr>
+{{ top|safe }}
+<hr>
+{{ bottom|safe }}
 {% endblock %}
