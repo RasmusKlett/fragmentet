@@ -1,5 +1,6 @@
 # Create your views here.
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import Http404
 from events.models import *
 import facebook
 import os
@@ -8,6 +9,7 @@ from datetime import datetime
 from django.core.cache import cache
 from photologue.models import Gallery, Photo
 from django.db.models import Max
+from django.utils import timezone
 
 
 
@@ -44,18 +46,14 @@ def archive_single(request, event_linkname):
 
 def current_list(request, archive=False):
     if archive:
-        # events = Event.objects.filter(alldates__datetime__lt=datetime.now())
         single_view, list_view = ('events.views.archive_single', 'events.views.archive_list',)
-        events = Event.objects.annotate(max_date=Max('alldates__datetime')).filter(max_date__lt=datetime.now())
+        events = Event.objects.annotate(max_date=Max('alldates__datetime')).filter(max_date__lt=timezone.now())
     else:
-        # events = Event.objects.filter(alldates__datetime__gte=datetime.now())
         single_view, list_view = ('events.views.current_single', 'events.views.current_list',)
-        events = Event.objects.annotate(max_date=Max('alldates__datetime')).filter(max_date__gte=datetime.now())
+        events = Event.objects.annotate(max_date=Max('alldates__datetime')).filter(max_date__gte=timezone.now())
     shows = events.filter(category=0)
     workshops = events.filter(category=1)
     auditions = events.filter(category=2)
-    print 'archive: ', archive
-    print single_view, list_view
     return render(request, 'events.current_list.html', {
         'shows':shows, 
         'workshops':workshops, 
@@ -70,3 +68,11 @@ def current_single(request, event_linkname, archive=False):
     return render(request, 'events.current_single.html', {
         'event': event
         })
+
+def direct_event(request, event_linkname):
+    event_linkname = event_linkname.lower()
+    event = Event.objects.get(linkname=event_linkname)
+    if event:
+        return redirect(event, permanent=True)
+    else:
+        raise Http404

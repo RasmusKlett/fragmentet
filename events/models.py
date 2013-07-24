@@ -4,6 +4,8 @@ from photologue.models import Gallery, Photo
 from tinymce.models import HTMLField
 from tinymce.widgets import TinyMCE
 from django.db import connection
+from django.utils import timezone
+from django.core.urlresolvers import reverse
 
 class EventManager(models.Model):
     def _dbaccess(self, isCurrent):
@@ -49,6 +51,13 @@ class Event(models.Model):
     coverimage = models.ForeignKey(Photo, default=Photo.objects.filter(title='default_cover')[0])
     galleries = models.ManyToManyField(Gallery, null=True, blank=True, verbose_name='Gallerier')
     objects = EventManager()
+
+    def get_absolute_url(self):
+        if self.alldates.latest().datetime >= timezone.now():
+            return reverse('events.views.current_single', args=[self.linkname])
+        else:
+            return reverse('events.views.archive_single', args=[self.linkname])
+            
 
     def last_date(self):
         print self.alldates.last()
