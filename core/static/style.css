@@ -112,7 +112,7 @@ body {
 */
 
 #header {
-    height: 250px;
+    height: 200px;
     background-color: #E7E6DF;
 }
 
@@ -268,6 +268,7 @@ p,a,h1,h2,h3,h4 {
 
 #nwbody p {
     color: #E7E6DF;
+    margin-top: -12px;
 }
 
 #newsletter {
@@ -301,6 +302,10 @@ p,a,h1,h2,h3,h4 {
 #audition-content {
     display:block;
     width: 400px;
+}
+
+#audition-content a {
+    text-decoration:none;
 }
 
 #audition-picture {
@@ -408,6 +413,14 @@ h2 {
     height:280px;
 }
 
+#bot-agrements {
+    width: 450px;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+
+
 #loading-image {
     top: 300px;
     left: 550px;
@@ -415,4 +428,53 @@ h2 {
     height: 50px;
     position:absolute;
     display:none;
+
+
+
+}
+
+
+
+    /* Medlemskab */
+
+
+#top-info {
+    margin-top: 20px;
+    text-align:center;
+}
+
+.info-frame {
+    background-color: #D7D8CC;
+    border: 1px solid gray;
+    padding: 15px;
+    width: 260px;
+    height: 100%;
+
+}
+
+.info-frame h3 {
+    text-align: center;
+}
+
+#active {
+    float:left;
+    margin-left: 150px;
+}
+
+#active h3 {
+    color: #3388ff;
+}
+
+#passive {
+    float:right;
+    margin-right: 150px;
+}
+
+#passive h3 {
+    color: #89273A;
+}
+
+#bot-info {
+    text-align: center;
+    padding: 20px;
 }
