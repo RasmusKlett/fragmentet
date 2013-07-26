@@ -8,6 +8,8 @@ from django.core.cache import cache
 from photologue.models import Gallery, Photo
 from django.db.models import Max
 from django.utils import timezone
+from django.shortcuts import get_object_or_404, render
+
 
 
 
@@ -40,7 +42,7 @@ def main(request):
 
 def _view_list(request, isArchive):
     """Returns listview of events"""
-    if archive:
+    if isArchive:
         single_view, list_view = ('events.views.archive_single', 'events.views.archive_list',)
         events = Event.objects.annotate(max_date=Max('alldates__datetime')).filter(max_date__lt=timezone.now())
     else:
@@ -53,18 +55,18 @@ def _view_list(request, isArchive):
         'shows':shows, 
         'workshops':workshops, 
         'auditions':auditions, 
-        'current': not archive,
+        'current': not isArchive,
         'single_view': single_view,
         'list_view': list_view,
     })
 
 def current_list(request):
     """returns listview of current events."""
-    return current_list(request, False)
+    return _view_list(request, False)
 
 def archive_list(request):
     """returns listview of archived events."""
-    return current_list(request, True)
+    return _view_list(request, True)
 
 def _view_single(request, event_linkname, isArchive):
     """returns listview of a single event."""
@@ -75,11 +77,11 @@ def _view_single(request, event_linkname, isArchive):
 
 def current_single(request, event_linkname):
     """returns listview of a single current event."""
-    return view_single(request, event_linkname, False)
+    return _view_single(request, event_linkname, False)
 
 def archive_single(request, event_linkname):
     """returns listview of a single archived event."""
-    return view_single(request, event_linkname, True)
+    return _view_single(request, event_linkname, True)
 
 def direct_event(request, event_linkname):
     """Handles requests to /linkname """
