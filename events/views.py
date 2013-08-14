@@ -34,7 +34,7 @@ def main(request):
             cache.set('facebook_data', posts)
         except Exception as e:
            print "FBError:", e
-    event = get_object_or_404(Event,title='Backstage')
+    event = get_object_or_404(Event,linkname='backstage')
     audition = Event.objects.filter(category=2).latest('alldates')
     return render(request, 'events.main.html', {'event': event, 'posts':posts, 'audition':audition})
 
