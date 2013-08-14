@@ -32,7 +32,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^([-\w]+)/?$', events.views.direct_event),
+    # url(r'^([-\w]+)/?$', events.views.direct_event),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'core.views.error404'

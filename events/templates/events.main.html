@@ -16,7 +16,7 @@
                 <a href={% url events.views.current_single event.linkname %} class='local'><img src={{ event.coverimage.get_display_url }} alt="Frontpage_Cover" height="330px" /></a>
             </div>
             <div id= "event-description" class="description">
-                <p>{{ event.description }}</p>
+                <p>{{ event.description|safe }}</p>
             </div>
         </div>
     </div>
