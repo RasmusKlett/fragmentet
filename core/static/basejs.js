@@ -3,7 +3,6 @@ var animationList = [];
 var animating = 0;
 
 function popAnimation() {
-    //console.log('popAnimation');
     animating--;
     if (animationList.length != 0) {
         a = animationList.shift();
@@ -12,8 +11,6 @@ function popAnimation() {
 }
 
 function pushAnimation(a) {
-    //console.log('pushAnimation');
-    //console.log('list: ' + animationList.length + ', animating: ' + animating);
     if (animationList.length != 0 || animating > 0) {
         animating++;
         animationList.push(a);
@@ -25,8 +22,9 @@ function pushAnimation(a) {
 }
 
 function initsubpage() {
-    //console.log('initsubpage');
+    //Find any tabs to intercept
     $("#tabs").tabs();
+    //Find gallery links to intercept
     $("a.gallery-link").click(function(e){
         path = $(this).attr('href');
         loadGallery(e, path);
@@ -36,9 +34,9 @@ function initsubpage() {
         $("#gallery-view").hide();
         e.preventDefault();
     });
+    //Intercept local links
     $(".local").click(function(e) {
         if (!e.ctrlKey)
-            //console.log("local link");
             setsubpage(e, $(this).attr("href"));
     });
     jQuery('a.gallery').colorbox({rel:'gallery'});
@@ -49,7 +47,6 @@ function setsubpage(e, path) {
         path = '';
     }
     var animFunc = function(){
-        //console.log('fadeOut');
         $("#loading-image").show();
         contentdiv.animate({opacity:0},"fast", popAnimation);
     };
@@ -68,7 +65,7 @@ function setsubpage(e, path) {
                     document.title = pageTitle;
                     contentdiv.html(content);
                     initsubpage();
-                    window.history.pushState({"content":content,"pageTitle":pageTitle},"", path);
+                    window.history.pushState({"myContent":content,"pageTitle":pageTitle, "path":path},"", path);
                     setNavSelected(window.location.pathname);
                 }
                 else {
@@ -103,7 +100,7 @@ function loadGallery(e, path) {
                     $("#gallery-info").hide();
                     $("#gallery-view").html(content).show();
                     initsubpage();
-                    window.history.pushState({"content":content,"pageTitle":pageTitle},"", window.location.pathname);
+                    window.history.pushState({"myContent":content,"pageTitle":pageTitle, "path":path},"", window.location.pathname);
                     setNavSelected(window.location.pathname);
                 }
                 else {
@@ -116,10 +113,16 @@ function loadGallery(e, path) {
 }
 
 window.onpopstate = function(e){
+    console.log('contentdiv.length: ')
+    console.log(contentdiv.length)
+    console.log(e.state)
     if(e.state && contentdiv.length > 0){
-        contentdiv.html(e.state.content)
+        console.log('onpopstate: contentdiv exists')
+        contentdiv.html(e.state.myContent)
         document.title = e.state.pageTitle;
     }
+    else 
+        window.location = e.state.path;
 };
 
 function setNavSelected(path) {

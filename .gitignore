@@ -3,3 +3,5 @@
 *.swo
 facebook_token.txt
 public/*
+fragmentet/settings.py
+fragmentet/settings_prod.py
