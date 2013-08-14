@@ -1,5 +1,3 @@
-# Create your views here.
-from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404
 from events.models import *
 import facebook
@@ -10,11 +8,14 @@ from django.core.cache import cache
 from photologue.models import Gallery, Photo
 from django.db.models import Max
 from django.utils import timezone
+from django.shortcuts import get_object_or_404, render
+
 
 
 
 
 def get_wall_posts():
+    """Loads newsfeed from Facebook."""
     f = open('events/facebook_token.txt', 'r+')
     access_token = f.read()[:-1]
     graph = facebook.GraphAPI(access_token)
@@ -27,6 +28,7 @@ def get_wall_posts():
     
 
 def main(request):
+    """Shows mainpage"""
     posts = cache.get('facebook_data')
     if not posts:
         try:
@@ -38,14 +40,9 @@ def main(request):
     audition = Event.objects.filter(category=2).latest('alldates')
     return render(request, 'events.main.html', {'event': event, 'posts':posts, 'audition':audition})
 
-def archive_list(request):
-    return current_list(request, True)
-
-def archive_single(request, event_linkname):
-    return current_single(request, event_linkname, True)
-
-def current_list(request, archive=False):
-    if archive:
+def _view_list(request, isArchive):
+    """Returns listview of events"""
+    if isArchive:
         single_view, list_view = ('events.views.archive_single', 'events.views.archive_list',)
         events = Event.objects.annotate(max_date=Max('alldates__datetime')).filter(max_date__lt=timezone.now())
     else:
@@ -58,18 +55,36 @@ def current_list(request, archive=False):
         'shows':shows, 
         'workshops':workshops, 
         'auditions':auditions, 
-        'current': not archive,
+        'current': not isArchive,
         'single_view': single_view,
         'list_view': list_view,
     })
 
-def current_single(request, event_linkname, archive=False):
+def current_list(request):
+    """returns listview of current events."""
+    return _view_list(request, False)
+
+def archive_list(request):
+    """returns listview of archived events."""
+    return _view_list(request, True)
+
+def _view_single(request, event_linkname, isArchive):
+    """returns listview of a single event."""
     event = get_object_or_404(Event,linkname=event_linkname)
     return render(request, 'events.current_single.html', {
         'event': event
-        })
+    })
+
+def current_single(request, event_linkname):
+    """returns listview of a single current event."""
+    return _view_single(request, event_linkname, False)
+
+def archive_single(request, event_linkname):
+    """returns listview of a single archived event."""
+    return _view_single(request, event_linkname, True)
 
 def direct_event(request, event_linkname):
+    """Handles requests to /linkname """
     event_linkname = event_linkname.lower()
     event = Event.objects.get(linkname=event_linkname)
     if event:
