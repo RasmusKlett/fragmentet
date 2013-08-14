@@ -1,9 +1,6 @@
 # Django settings for fragmentet project.
 import os.path
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-
 TOP_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 ADMINS = (
@@ -22,10 +19,6 @@ DATABASES = {
         'PORT': '3306',                  # Set to empty string for default. Not used with sqlite3.
     }
 }
-
-# Hosts/domain names that are valid for this site; required if DEBUG is False
-# See https://docs.djangoproject.com/en//ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -84,9 +77,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
-
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = '_rv8oii0cw^9oi4oo%zxglpk^2grc59x*77m6z=3$48k7=yh=w'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
