@@ -136,7 +136,7 @@ body {
     display: inline;
 }
 
-        /* Global */
+        /* global */
 
 
 p,a,h1,h2,h3,h4 {
@@ -145,7 +145,7 @@ p,a,h1,h2,h3,h4 {
 
 
 
-        /* Forside */
+        /* forside */
 
 #post-frame {
     display:inline-block;
@@ -154,10 +154,11 @@ p,a,h1,h2,h3,h4 {
 #news {
     background-color: #89273A;
     border: 2px solid #848484;
+    border-radius: 2px;
     float: right;
     width: 240px;
     height: auto;
-    margin-top: 20px;
+    margin-top: 5px;
     display:inline;
 }
 
@@ -274,6 +275,7 @@ p,a,h1,h2,h3,h4 {
 #newsletter {
     margin: 20px 0px;
     border: 2px solid gray;
+    border-radius: 2px;
     float: right;
     width: 240px;
     text-align: center;
@@ -346,24 +348,59 @@ p,a,h1,h2,h3,h4 {
     margin-left: 45px;
 }
 
+.ui-tabs-nav {
+    border: none;
+    background: none;
+}
+
+#tabs li {
+    background: none;
+    border: none;
+}
+
+.ui-tabs-anchor {
+    border-radius: 4px;
+    border: 1px solid gray;
+}
+
+.ui-tabs-active {
+    background-color: red;
+}
 
         /* event liste */
 
-h2 {
-    color: #303030;
+#listbackground {
+    background-color: #DDDCD6;
+    margin: -30px;
+    
+}
+
+#listcontent {
+    margin-top: 0px;
+    margin-left: 188px;
+    /*box-shadow: 6px 0px 7px -5px #888888;*/
+    box-shadow: 0px 5px 20px -8px black;
+    width: 600px;
+    background-color: #E7E6DF;
+}
+
+#listcontent h2 {
+    margin-left: 55px;
 }
 
 .tablefield {
-    margin:10px;
+    margin: 10px;
+    margin-left:100px;
+    width: 450px;
 }
 
 .tablefield ul {
     list-style-type: none;
-    width: 500px;
+    width: 460px;
 }
 
 .tablefield li {
-    padding: 5px;
+    padding: 0px;
     overflow: auto;
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
@@ -444,12 +481,17 @@ h2 {
 }
 
 .info-frame {
-    background-color: #D7D8CC;
-    border: 1px solid gray;
+   /* background-color: #D7D8CC;*/
+    background-color: #303030;
+    border: 2px solid gray;
+    border-radius: 5px;
     padding: 15px;
     width: 260px;
     height: 100%;
 
+}
+.info-frame p {
+    color: #E7E6DF;
 }
 
 .info-frame h3 {
@@ -462,7 +504,7 @@ h2 {
 }
 
 #active h3 {
-    color: #3388ff;
+    color: #BE9C45;
 }
 
 #passive {
@@ -471,7 +513,7 @@ h2 {
 }
 
 #passive h3 {
-    color: #89273A;
+    color: #BE9C45;
 }
 
 #bot-info {
