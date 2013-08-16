@@ -326,6 +326,37 @@ p,a,h1,h2,h3,h4 {
 
         /* aktuelt single */
 
+#event-background {
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 2px;
+}
+
+#tabs {
+    border: none;
+    background-color: none;
+}
+
+#pracinfo {
+    float: right;
+    margin-top: -25px;
+    margin: 5px;
+    width: 300px;
+    height: 300px;
+    background-color: white;
+    display:inline;
+    border: 1px solid gray;
+    border-radius: 2px;
+    padding: 3px;
+}
+
+#pracinfo h4 {
+    text-align:center;
+}
+
+#tab-description {
+    display:inline;
+}
 
 
 #gallery-info h3 {
@@ -371,8 +402,7 @@ p,a,h1,h2,h3,h4 {
 
 #listbackground {
     background-color: #DDDCD6;
-    margin: -30px;
-    
+    margin: -30px; 
 }
 
 #listcontent {

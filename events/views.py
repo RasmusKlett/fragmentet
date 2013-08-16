@@ -73,6 +73,7 @@ def _view_single(request, event_linkname, isArchive):
     """returns listview of a single event."""
     event = get_object_or_404(Event,linkname=event_linkname)
     return render(request, 'events.current_single.html', {
+        'current': not isArchive,
         'event': event
     })
 

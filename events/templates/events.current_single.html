@@ -3,12 +3,24 @@
 {% block title %}{{event.linkname}} - Fragmentet{% endblock %}
 {% block content %}
 <h1>{{event.title}}</h1>
+    <a class="local" href=
+    {% if current %}
+        {% url events.views.current_list %}
+    {% else %}
+        {% url events.views.archive_list %}
+    {% endif %}
+    >Tilbage</a>
+<div id="event-background" class="clear">
 <div id="tabs">
     <ul>
         <li><a href="#tab-description">Beskrivelse</a></li>
         <li><a href="#tab-cast">Medvirkende</a></li>
         <li><a href="#tab-gallery">Galleri</a></li>
     </ul>
+    <div id="pracinfo">
+        <h4>Pratisk Information</h4>
+        {{event.info|safe}}
+   </div>
     <div id="tab-description">
         {{event.description|safe}}
         {{event.cover|safe}}
@@ -35,4 +47,5 @@
 </div>
 <div class="clear"></div>
 <br>
+</div>
 {% endblock %}
