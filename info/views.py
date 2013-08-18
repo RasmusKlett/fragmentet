@@ -3,13 +3,19 @@ from django.shortcuts import render
 from info.models import Infopage
 
 def about(request):
-    return render(request, 'info.about.html')
+    page = Infopage.objects.select_related().get(title='Om Teatret')
+    history = page.texts.get(title='Historie').content
+    image = page.images.all()[0]
+    return render(request, 'info.about.html', {
+        'history': history,
+        'image': image
+    })
 
 def archive(request):
     return render(request, 'info.archive.html')
 
 def membership(request):
-    page = Infopage.objects.get(title='Medlemskab')
+    page = Infopage.objects.select_related().get(title='Medlemskab')
     active = page.texts.get(title='Aktivt medlem').content
     passive = page.texts.get(title='Passivt medlem').content
     top = page.texts.get(title='Generelt top').content

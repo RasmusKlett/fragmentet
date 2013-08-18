@@ -9,5 +9,7 @@ class InfotextInline(admin.TabularInline):
 class InfopageAdmin(admin.ModelAdmin):
     inlines = [InfotextInline]
     filter_horizontal = ['images']
+    search_fields = ['title']
+    list_display = ('title',)
 
 admin.site.register(Infopage, InfopageAdmin)
