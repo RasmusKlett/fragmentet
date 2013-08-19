@@ -5,13 +5,9 @@
 <div id="about">
     <h3>Fragmentets historie</h3>
     <div id="about-text">
-        <p>Musik- og Teaterforeningen Fragmentet så dagens lys d. 5/12 – 2012.<br>Det var dagen for den stiftende generalforsamling, hvor grundpræmisserne og vedtægter for foreningen skulle diskuteres og godkendes. Til generalforsamlingen mødte 30 unge op, der alle viste stor interesse for at få foreningen skudt godt i gang, og som alle har haft mange års erfaring indenfor musicalens, musikkens og teatrets verdener bl.a. gennem Hvidovre Musikskoles musicals.</p>
-
-    <p>Hvidovre kommune har i mange år rådet over enormt dygtige unge både indenfor teatrets og musikkens verden.  Det er disse unge, der nu ønsker at stå på egne ben. Ideen er, at foreningen skal være et tilbud til de unge, der er for gamle til at deltage i ungdomsforeninger samt unge, som blot har lyst til andre udfordringer. Foreningen skal ses som et tilbud til unge i Hvidovre og lokalområderne, hvor unge får muligheden for selv at sætte ønskede produktioner op, hvad enten det er teater, koncerter eller musicals.</p>
-
-    <p>Foreningen har naturligvis ikke så meget historie endnu, men vi håber, at så mange som muligt vil støtte op om vores forening, og dermed hjælpe til at Musik- og Teaterforeningen Fragmentet får skabt sin egen gode historie</p>
+    {{ history|safe }}
     </div>
-    <img src="/media/photologue/photos/994271_136202903246876_1991582244_n.jpg"> 
+    <img src={{ image.get_display_url }} > 
     <div id="bot-agrements">
         <p>Klik på nedenstående link for at downloade PDF med Fragmentetsvedtægter</p>
         <a href="www.downloadmig.dk" alt="Download">Download Vedtægter</a>
