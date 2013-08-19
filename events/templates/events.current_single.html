@@ -20,10 +20,19 @@
     <div id="pracinfo">
         <h4>Pratisk Information</h4>
         {{event.info|safe}}
+        {% if event.address %}
+            <p>Adresse: {{event.address|safe}}</p>
+        {% endif %}
+        {% if facebook_id %}
+            <a href={{event.facebook_id}} id="eventbutton"><img src="facebookbutton"></img></a>
+        {% endif %}
+        {% if event.ticket_link %}
+            <p><a href={{event.ticket_link}} id="ticketbutton">Bestil billetter</a></p>
+        {% endif %}
+        <img src={{event.coverimage.get_display_url}} width="310px"></img>
    </div>
     <div id="tab-description">
         {{event.description|safe}}
-        {{event.cover|safe}}
     </div>
     <div id="tab-cast">
         {{event.cast|safe}}
