@@ -14,11 +14,11 @@
                 <li>
                 <img src="{{ show.coverimage.get_thumbnail_url }}">
                 <h3>{{show.title}}</h3>
-                {% if show.dates.count = 1 %}
-                    <p>{{show.event_type}} <br> d. {{show.dates.latest.datetime|date:"j. F Y"}}</p>
-                {% elif show.dates.count > 1 %}
-                    <p>{{show.event_type}} <br> d. {{show.dates.earliest.datetime|date:"j. f"}} til d. {{show.dates.latest.datetime|date:"j. F Y"}}</p>
-                {% endif  %}
+                <p>{{show.event_type }} <br> d. {{ show.min_date|date:"j. F Y" }}
+                {% if show.max_date %}
+                    til d. {{ show.max_date|date:"j. F Y" }}
+                {% endif %}
+                </p>
                 </li>
             </a>
             {% endfor %}
@@ -37,11 +37,11 @@
                 <li>
                 <img src="{{ workshop.coverimage.get_thumbnail_url }}">
                 <h3>{{workshop.title}}</h3>
-                {% if workshop.alldates.count = 1 %}
-                    <p>{{workshop.event_type}} <br> d. {{workshop.alldates.latest.datetime|date:"j. F Y"}}</p>
-                {% elif workshop.alldates.count > 1 %}
-                    <p>{{workshop.event_type}} <br> d. {{workshop.alldates.first.datetime|date:"j. F"}} til d. {{workshop.dates.last.datetime|date:"j. F Y"}}</p>
-                {% endif  %}
+                <p>{{workshop.event_type }} <br> d. {{ workshop.min_date|date:"j. F Y" }}
+                {% if workshop.max_date %}
+                    til d. {{ workshop.max_date|date:"j. F Y" }}
+                {% endif %}
+                </p>
                 </li>
             </a>
             {% endfor %}
@@ -57,11 +57,11 @@
                 <li>
                 <img src="{{ audition.coverimage.get_thumbnail_url }}">
                 <h3>{{audition.title}}</h3>
-                {% if audition.dates.count = 1 %}
-                    <p>{{audition.event_type}} <br> d. {{audition.dates.latest.datetime|date:"j. F Y"}}</p>
-                {% elif audition.dates.count > 1 %}
-                    <p>{{audition.event_type}} <br> d. {{audition.dates.first.datetime|date:"j. F"}} til d. {{audition.dates.last.datetime|date:"j. F Y"}}</p>
-                {% endif  %}
+                <p>{{audition.event_type }} <br> d. {{ audition.min_date|date:"j. F Y" }}
+                {% if audition.max_date %}
+                    til d. {{ audition.max_date|date:"j. F Y" }}
+                {% endif %}
+                </p>
                 </li>
             </a>
             {% endfor %}

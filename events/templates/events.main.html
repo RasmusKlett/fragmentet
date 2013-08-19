@@ -2,18 +2,31 @@
 {% block title %}Fragmentet{% endblock %}
 {% block content %} 
 {% load staticfiles %}
+{% load url from future %}
 <div id="post-frame">
     <div id="event" class="post">
+        {% if event.is_inactive %}
+            {% url event.linkname as main_link %}
+        {% else %}
+            {% url 'events.views.current_single' event.linkname as main_link %}
+        {% endif %}
         <h3>
-            <a href={% url events.views.current_single event.linkname %} class='local'>{{ event.title }}</a>
+            <a href="{{ main_link }}" class='local'>{{ event.title|safe }}</a>
         </h3>
         <strong>
-            {{ event.event_type }} - d. {{ event.dates.latest.datetime }}
+            {% if not event.is_inactive %}
+                {{ event.event_type }} - d. 
+                {% if event.date %}
+                    {{ event.date|date:"j. F" }}
+                {% else %}
+                    {{ event.min_date|date:"j. F" }} til {{ event.max_date|date:"j. F" }}
+                {% endif %}
+            {% endif %}
             <hr>
         </strong>
         <div id="event-content">
             <div id= "event-picture" class="fpicture">    
-                <a href={% url events.views.current_single event.linkname %} class='local'><img src={{ event.coverimage.get_display_url }} alt="Frontpage_Cover" height="330px" /></a>
+                <a href={{ main_link }} class="local"><img src={{ event.coverimage.get_display_url }} alt="Frontpage_Cover" height="330px" /></a>
             </div>
             <div id= "event-description" class="description">
                 <p>{{ event.description|safe }}</p>
@@ -24,13 +37,13 @@
         <hr>
         <div id="audition-content" class="post">
             <h3>
-                <a href={% url events.views.current_single audition.linkname %} class='local'>{{ audition.title }}</a>
+                <a href={% url 'events.views.current_single' audition.linkname %} class='local'>{{ audition.title }}</a>
             </h3>
             <strong>
-                {{ event.event_type }} - d. {{ audition.dates.latest.datetime }}
+                Audition - d. {{ audition.date|date:"j F" }}
             </strong>
             <div id="audition-picture" class="fpicture">
-                <a href={% url events.views.current_single audition.linkname %}  class='local'><img src={{ audition.coverimage.get_display_url }} alt="Audition_Cover" width="180px" /></a>
+                <a href={% url 'events.views.current_single' audition.linkname %}  class='local'><img src={{ audition.coverimage.get_display_url }} alt="Audition_Cover" width="180px" /></a>
             </div>
             <div id="audition-description" class="description">
                 <p>{{ audition.description|safe}}</p>

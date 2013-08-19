@@ -51,17 +51,13 @@ class Event(models.Model):
     coverimage = models.ForeignKey(Photo, default=Photo.objects.filter(title='default_cover')[0])
     galleries = models.ManyToManyField(Gallery, null=True, blank=True, verbose_name='Gallerier')
     objects = EventManager()
-
-    def get_absolute_url(self):
-        if self.alldates.latest().datetime >= timezone.now():
-            return reverse('events.views.current_single', args=[self.linkname])
-        else:
-            return reverse('events.views.archive_single', args=[self.linkname])
-            
-
-    def last_date(self):
-        print self.alldates.last()
-        return self.alldates.last()
+    
+    # Checks whether event is current or archived based on date. Untested, therefore commented out.
+    # def get_absolute_url(self):
+    #     if self.alldates.latest().datetime >= timezone.now():
+    #         return reverse('events.views.current_single', args=[self.linkname])
+    #     else:
+    #         return reverse('events.views.archive_single', args=[self.linkname])
 
     def __unicode__(self):
         return self.title

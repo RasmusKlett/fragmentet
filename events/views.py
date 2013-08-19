@@ -1,17 +1,16 @@
 from django.http import Http404
 from events.models import *
+from info.models import *
 import facebook
 import os
 import time
 from datetime import datetime
 from django.core.cache import cache
 from photologue.models import Gallery, Photo
-from django.db.models import Max
+from django.db.models import Max, Min
 from django.utils import timezone
 from django.shortcuts import get_object_or_404, render
-
-
-
+import re
 
 
 def get_wall_posts():
@@ -25,7 +24,7 @@ def get_wall_posts():
     for post in posts:
         post["created_time"] = datetime.strptime(post["created_time"], "%Y-%m-%dT%H:%M:%S+0000")
     return posts
-    
+
 
 def main(request):
     """Shows mainpage"""
@@ -36,19 +35,33 @@ def main(request):
             cache.set('facebook_data', posts)
         except Exception as e:
            print "FBError:", e
-    event = Event.objects.filter(category=0).select_related().latest('alldates')
-    # event = get_object_or_404(Event,title='Backstage')
-    audition = Event.objects.filter(category=2).latest('alldates')
+    event = None
+    event = Event.objects.select_related().annotate(min_date=Min('alldates__datetime'), max_date=Max('alldates__datetime')).filter(category=0, max_date__gte=datetime.today()).latest('min_date')
+    if event.min_date == event.max_date:
+        event.date = event.min_date
+    if not event:
+        page = Infopage.objects.select_related().get(title='Inaktiv Forside')
+        event = {
+            'is_inactive': True,
+            'description': page.texts.get(title='Beskrivelse').content,
+            'title': re.sub('<[^<]+?>', '', page.texts.get(title='Overskrift').content),
+            'coverimage': page.images.all()[0],
+            'linkname': 'info.views.about'
+        }
+    audition = Event.objects.annotate(date=Min('alldates__datetime')).filter(category=2).latest('alldates')
     return render(request, 'events.main.html', {'event': event, 'posts':posts, 'audition':audition})
 
 def _view_list(request, isArchive):
     """Returns listview of events"""
     if isArchive:
         single_view, list_view = ('events.views.archive_single', 'events.views.archive_list',)
-        events = Event.objects.annotate(max_date=Max('alldates__datetime')).filter(max_date__lt=timezone.now())
+        events = Event.objects.annotate(min_date=Min('alldates__datetime'), max_date=Max('alldates__datetime')).filter(max_date__lt=timezone.now())
     else:
         single_view, list_view = ('events.views.current_single', 'events.views.current_list',)
-        events = Event.objects.annotate(max_date=Max('alldates__datetime')).filter(max_date__gte=timezone.now())
+        events = Event.objects.annotate(min_date=Min('alldates__datetime'), max_date=Max('alldates__datetime')).filter(max_date__gte=timezone.now())
+    for event in events:
+        if event.max_date == event.min_date:
+            event.max_date = None
     shows = events.filter(category=0)
     workshops = events.filter(category=1)
     auditions = events.filter(category=2)
