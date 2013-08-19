@@ -442,9 +442,16 @@ p,a,h1,h2,h3,h4 {
 
 #ticketbutton {
     background-color: #6EAD6E;
-    text-align: center;
+    margin-left: 100px;
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 6px;
+    box-shadow: 1px 1px 1px #888888;
 }
 
+#eventbutton { 
+}
 
 
         /* event liste */
@@ -512,18 +519,18 @@ p,a,h1,h2,h3,h4 {
         /* Om teatret */
 
 
-#about {
+.infopage {
     margin-top: 30px;
 }
 
-#about-text {
+.infopage-text {
      display:inline-block;
      width: 500px;
      margin-left: 20px;
      margin-bottom: 90px;
 }
 
-#about img {
+.infopage img {
     margin-top: 30px;
     float:right;
     display:inline;
@@ -537,17 +544,13 @@ p,a,h1,h2,h3,h4 {
     padding-bottom: 30px;
 }
 
-
-
 #loading-image {
     top: 300px;
-    left: 550px;
+    left: 650px;
     width: 50px;
     height: 50px;
     position:absolute;
     display:none;
-
-
 
 }
 
@@ -601,3 +604,10 @@ p,a,h1,h2,h3,h4 {
     text-align: center;
     padding: 20px;
 }
+
+
+
+        /* kontakt */
+
+
+

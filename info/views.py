@@ -29,4 +29,9 @@ def membership(request):
     })
 
 def contact(request):
-    return render(request, 'info.contact.html')
+    page = Infopage.objects.select_related().get(title='Kontakt')
+    contacts = page.texts.get(title='Kontakter').content
+    
+    return render(request, 'info.contact.html', {
+        'contacts': contacts
+    })

@@ -2,10 +2,10 @@
 
 {% block title %}Om Teatret{% endblock %}
 {% block content %} 
-<div id="about">
+<div class="infopage">
     <h3>Fragmentets historie</h3>
-    <div id="about-text">
-    {{ history|safe }}
+    <div class="infopage-text">
+        {{ history|safe }}
     </div>
     <img src={{ image.get_display_url }} > 
     <div id="bot-agrements">

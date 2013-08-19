@@ -24,7 +24,7 @@
             <p>Adresse: {{event.address|safe}}</p>
         {% endif %}
         {% if facebook_id %}
-            <a href={{event.facebook_id}} id="eventbutton">Facebook Begivenhed</a>
+            <a href={{event.facebook_id}} id="eventbutton"><img src="facebookbutton"></img></a>
         {% endif %}
         {% if event.ticket_link %}
             <p><a href={{event.ticket_link}} id="ticketbutton">Bestil billetter</a></p>
