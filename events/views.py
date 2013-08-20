@@ -10,6 +10,7 @@ from photologue.models import Gallery, Photo
 from django.db.models import Max, Min
 from django.utils import timezone
 from django.shortcuts import get_object_or_404, render
+from django.core.exceptions import ObjectDoesNotExist
 import re
 
 
@@ -51,7 +52,10 @@ def main(request):
             'coverimage': page.images.all()[0],
             'linkname': 'info.views.about'
         }
-    audition = Event.objects.annotate(date=Min('alldates__datetime')).filter(category=2).latest('alldates')
+    try:
+        audition = Event.objects.annotate(date=Min('alldates__datetime')).filter(category=2).latest('alldates')
+    except ObjectDoesNotExist:
+        pass
     return render(request, 'events.main.html', {'event': event, 'posts':posts, 'audition':audition})
 
 def _view_list(request, isArchive):
