@@ -608,11 +608,28 @@ p,a,h1,h2,h3,h4 {
 
 
 #footer {
-    height: 40px;
+    height: 25px;
     margin-top: 40px;
+    margin-bot: 20px;
     background: #303030;
+    box-shadow: 0px 1px 25px 0px #2B2B2B inset;
+    border-bottom-radius: 15px;
+    text-align:center;
+    padding-top:12px;
 }
 
 #footer p {
+    color: #BE9C45;
+    display:inline;
+    padding-top: 25px;
+    margin-right: 20px;
+}
 
+#footer a {
+    color: #BE9C45;
+    display:inline;
+}
+
+#footer a:hover {
+    color: #89273A;
 }
