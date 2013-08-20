@@ -15,18 +15,18 @@
         </h3>
         <strong>
             {% if not event.is_inactive %}
-                {{ event.event_type }} - d. 
+                {{ event.event_type }} -  
                 {% if event.date %}
                     {{ event.date|date:"j. F" }}
                 {% else %}
-                    {{ event.min_date|date:"j. F" }} til {{ event.max_date|date:"j. F" }}
+                    {{ event.min_date|date:"j. F" }} - {{ event.max_date|date:"j. F" }}
                 {% endif %}
             {% endif %}
             <hr>
         </strong>
         <div id="event-content">
             <div id= "event-picture" class="fpicture">    
-                <a href={{ main_link }} class="local"><img src={{ event.coverimage.get_display_url }} alt="Frontpage_Cover" height="330px" /></a>
+                <a href={{ main_link }} class="local"><img src={{ event.coverimage.get_display_url }} alt="Frontpage_Cover" width="321px" /></a>
             </div>
             <div id= "event-description" class="description">
                 <p>{{ event.description|safe }}</p>
@@ -40,7 +40,7 @@
                 <a href={% url 'events.views.current_single' audition.linkname %} class='local'>{{ audition.title }}</a>
             </h3>
             <strong>
-                Audition - d. {{ audition.date|date:"j F" }}
+                Audition - {{ audition.date|date:"j F" }}
             </strong>
             <div id="audition-picture" class="fpicture">
                 <a href={% url 'events.views.current_single' audition.linkname %}  class='local'><img src={{ audition.coverimage.get_display_url }} alt="Audition_Cover" width="180px" /></a>

@@ -35,8 +35,8 @@ body {
 #panelbox {
     position:relative;
     width: 1000px;
-    height: 32px;
-    top: -5px;
+    height: 32.2px;
+    top: -5.2px;
     background-color: #303030;
     box-shadow: 0px -2px 10px -5px black inset;
 
@@ -226,10 +226,6 @@ p,a,h1,h2,h3,h4 {
 .fpicture {
     display:inline;
     position:absolute;
-}
-
-.fpicture:hover {
-    outline: 1.5px solid #89273A;
 }
 
 #topbar {
@@ -512,11 +508,13 @@ p,a,h1,h2,h3,h4 {
 }
 
 .tablefield li:hover {
-    background-color: #D0CFC9;
+    background-color: #89273A;
+    
 }
 
 
         /* Om teatret */
+
 
 
 .infopage {
@@ -535,7 +533,6 @@ p,a,h1,h2,h3,h4 {
     float:right;
     display:inline;
     width:350px;
-    height:280px;
 }
 
 #bot-agrements {
