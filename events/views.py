@@ -39,7 +39,7 @@ def main(request):
     event = None
     try:
         event = Event.objects.select_related().annotate(min_date=Min('alldates__datetime'), max_date=Max('alldates__datetime')).filter(category=0, max_date__gte=datetime.today()).latest('min_date')
-    except DoesNotExist:
+    except ObjectDoesNotExist:
         pass
     if event.min_date == event.max_date:
         event.date = event.min_date
