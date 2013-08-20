@@ -14,9 +14,9 @@
                 <li>
                 <img src="{{ show.coverimage.get_thumbnail_url }}">
                 <h3>{{show.title}}</h3>
-                <p>{{show.event_type }} <br> d. {{ show.min_date|date:"j. F Y" }}
+                <p>{{show.event_type }} <br> {{ show.min_date|date:"j. F" }}
                 {% if show.max_date %}
-                    til d. {{ show.max_date|date:"j. F Y" }}
+                    - {{ show.max_date|date:"j. F Y" }}
                 {% endif %}
                 </p>
                 </li>
@@ -37,9 +37,9 @@
                 <li>
                 <img src="{{ workshop.coverimage.get_thumbnail_url }}">
                 <h3>{{workshop.title}}</h3>
-                <p>{{workshop.event_type }} <br> d. {{ workshop.min_date|date:"j. F Y" }}
+                <p>{{workshop.event_type }} <br> {{ workshop.min_date|date:"j. F" }}
                 {% if workshop.max_date %}
-                    til d. {{ workshop.max_date|date:"j. F Y" }}
+                    - {{ workshop.max_date|date:"j. F Y" }}
                 {% endif %}
                 </p>
                 </li>
@@ -57,9 +57,9 @@
                 <li>
                 <img src="{{ audition.coverimage.get_thumbnail_url }}">
                 <h3>{{audition.title}}</h3>
-                <p>{{audition.event_type }} <br> d. {{ audition.min_date|date:"j. F Y" }}
+                <p>{{audition.event_type }}<br> {{ audition.min_date|date:"j. F" }}
                 {% if audition.max_date %}
-                    til d. {{ audition.max_date|date:"j. F Y" }}
+                    - {{ audition.max_date|date:"j. F Y" }}
                 {% endif %}
                 </p>
                 </li>
