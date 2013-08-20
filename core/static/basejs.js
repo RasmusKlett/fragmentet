@@ -64,20 +64,16 @@ function handleAJAXResponse(response, path) {
 
     //Display content
     pushAnimation(function() {
-        //console.log('fadeIn');
-        contentdiv.animate({opacity:1},"fast", popAnimation);
-        $("#loading-image").hide();
+        contentdiv.animate({opacity:1},100 , popAnimation);
     });
 }
-
 
 function setsubpage(e, path) {
     if (path==null){
         path = '';
     }
     var animFunc = function(){
-        $("#loading-image").show();
-        contentdiv.animate({opacity:0},"fast", popAnimation);
+        contentdiv.animate({opacity:0},100 , popAnimation);
     };
     pushAnimation(animFunc);
     $.ajax({
@@ -86,9 +82,6 @@ function setsubpage(e, path) {
         headers: {'X-Requested-With': 'XMLHttpRequest'},
         success: function(response) {handleAJAXResponse(response, path);},
         error: function(jqXHR, textStatus, error) {
-            console.log(jqXHR)
-            console.log(textStatus)
-            console.log(error)
             window.location = path;
         }
     });

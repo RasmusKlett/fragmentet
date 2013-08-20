@@ -4,5 +4,6 @@
 {% block content %}
 <h1>Serverfejl</h1>
 <p>Der skete en fejl på serveren. Administratorerne er blevet underrettet om fejlen.</p>
-<p><a class='local' href={% url events.views.main %}>Gå til forsiden</a></p>
+<p>Du kan forsøge igen, men funktionen vil sandsynligvis ikke virke før en administrator har kigget på problemet.</p>
+<p><a class='local' href="{% url events.views.main %}">Gå til forsiden</a></p>
 {% endblock %}
