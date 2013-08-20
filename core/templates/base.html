@@ -22,7 +22,7 @@
 <body>
 <div id="parentdiv" class="wrap">
     <div id="header" class="wrap">
-        <img src={% static 'header-image.jpg' %} alt="Fragmentet"/>
+        <img src={% static 'header-image.png' %} alt="Fragmentet"/>
         <div id="panelbox">
         </div>
         <ul id="nav-global" class="wrap">
@@ -50,7 +50,7 @@
     <img id="loading-image" src={% static 'images/loading.gif' %}>
     <div id="footer">
         <p>Musik og -teaterforeningen Fragmentet</p>
-        <p>Bestyrelse@fragmentet.dk</p>
+        <a href="{% url info.views.contact %}">Bestyrelse@fragmentet.dk</a>
     </div>
 </div>
 </body>
