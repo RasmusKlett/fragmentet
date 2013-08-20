@@ -42,6 +42,35 @@ function initsubpage() {
     jQuery('a.gallery').colorbox({rel:'gallery'});
 }
 
+function handleAJAXResponse(response, path) {
+    var setContent = function (){
+        //console.log('AJAX')
+        var headerindex = response.indexOf("__AJAX__");
+        if (headerindex != -1) {
+            var pageTitle = response.substring(0,headerindex);
+            var content = response.substring(headerindex + 9);
+            document.title = pageTitle;
+            contentdiv.html(content);
+            initsubpage();
+            window.history.pushState({"myContent":content,"pageTitle":pageTitle, "path":path},"", path);
+            setNavSelected(window.location.pathname);
+        }
+        else {
+            window.location = path;
+        }
+        popAnimation();
+    };
+    pushAnimation(setContent);
+
+    //Display content
+    pushAnimation(function() {
+        //console.log('fadeIn');
+        contentdiv.animate({opacity:1},"fast", popAnimation);
+        $("#loading-image").hide();
+    });
+}
+
+
 function setsubpage(e, path) {
     if (path==null){
         path = '';
@@ -55,32 +84,12 @@ function setsubpage(e, path) {
         url: path,
         type: "GET",
         headers: {'X-Requested-With': 'XMLHttpRequest'},
-        success: function (response) {
-            var setContent = function (){
-                //console.log('AJAX')
-                var headerindex = response.indexOf("__AJAX__");
-                if (headerindex != -1) {
-                    var pageTitle = response.substring(0,headerindex);
-                    var content = response.substring(headerindex + 9);
-                    document.title = pageTitle;
-                    contentdiv.html(content);
-                    initsubpage();
-                    window.history.pushState({"myContent":content,"pageTitle":pageTitle, "path":path},"", path);
-                    setNavSelected(window.location.pathname);
-                }
-                else {
-                    window.location = path;
-                }
-                popAnimation();
-            };
-            pushAnimation(setContent);
-
-            //Display content
-            pushAnimation(function() {
-                //console.log('fadeIn');
-                contentdiv.animate({opacity:1},"fast", popAnimation);
-                $("#loading-image").hide();
-            });
+        success: function(response) {handleAJAXResponse(response, path);},
+        error: function(jqXHR, textStatus, error) {
+            console.log(jqXHR)
+            console.log(textStatus)
+            console.log(error)
+            window.location = path;
         }
     });
     e.preventDefault();
