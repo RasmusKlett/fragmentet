@@ -604,7 +604,15 @@ p,a,h1,h2,h3,h4 {
 
 
 
-        /* kontakt */
+       /* footer */
 
 
+#footer {
+    height: 40px;
+    margin-top: 40px;
+    background: #303030;
+}
 
+#footer p {
+
+}
