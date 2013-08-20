@@ -41,8 +41,6 @@ def main(request):
         event = Event.objects.select_related().annotate(min_date=Min('alldates__datetime'), max_date=Max('alldates__datetime')).filter(category=0, max_date__gte=datetime.today()).latest('min_date')
     except ObjectDoesNotExist:
         pass
-    if event.min_date == event.max_date:
-        event.date = event.min_date
     if not event:
         page = Infopage.objects.select_related().get(title='Inaktiv Forside')
         event = {
@@ -52,6 +50,10 @@ def main(request):
             'coverimage': page.images.all()[0],
             'linkname': 'info.views.about'
         }
+    else:
+        if event.min_date == event.max_date:
+            event.date = event.min_date
+    audition = None
     try:
         audition = Event.objects.annotate(date=Min('alldates__datetime')).filter(category=2).latest('alldates')
     except ObjectDoesNotExist:
