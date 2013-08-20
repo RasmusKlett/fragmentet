@@ -36,7 +36,10 @@ def main(request):
         except Exception as e:
            print "FBError:", e
     event = None
-    event = Event.objects.select_related().annotate(min_date=Min('alldates__datetime'), max_date=Max('alldates__datetime')).filter(category=0, max_date__gte=datetime.today()).latest('min_date')
+    try:
+        event = Event.objects.select_related().annotate(min_date=Min('alldates__datetime'), max_date=Max('alldates__datetime')).filter(category=0, max_date__gte=datetime.today()).latest('min_date')
+    except DoesNotExist:
+        pass
     if event.min_date == event.max_date:
         event.date = event.min_date
     if not event:
@@ -59,12 +62,18 @@ def _view_list(request, isArchive):
     else:
         single_view, list_view = ('events.views.current_single', 'events.views.current_list',)
         events = Event.objects.annotate(min_date=Min('alldates__datetime'), max_date=Max('alldates__datetime')).filter(max_date__gte=timezone.now())
+    shows = []
+    workshops = []
+    auditions = []
     for event in events:
         if event.max_date == event.min_date:
-            event.max_date = None
-    shows = events.filter(category=0)
-    workshops = events.filter(category=1)
-    auditions = events.filter(category=2)
+            event.max_date = False
+        if event.category == 0:
+            shows.append(event)
+        elif event.category == 1:
+            workshops.append(event)
+        elif event.category == 2:
+            auditions.append(event)
     return render(request, 'events.current_list.html', {
         'shows':shows, 
         'workshops':workshops, 
@@ -82,9 +91,14 @@ def archive_list(request):
     """returns listview of archived events."""
     return _view_list(request, True)
 
+
 def _view_single(request, event_linkname, isArchive):
     """returns listview of a single event."""
-    event = get_object_or_404(Event,linkname=event_linkname)
+    event = Event.objects.select_related().prefetch_related('galleries').get(linkname=event_linkname)
+    if not event:
+        raise Http404
+    for gallery in event.galleries.all():
+        gallery.sample4 = lambda: gallery.sample(4)
     return render(request, 'events.current_single.html', {
         'current': not isArchive,
         'event': event
