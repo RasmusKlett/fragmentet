@@ -13,9 +13,13 @@
 <div id="event-background" class="clear">
 <div id="tabs">
     <ul>
+        {% if event.description %}
         <li><a href="#tab-description">Beskrivelse</a></li>
+        {% endif %}
         <li><a href="#tab-cast">Medvirkende</a></li>
+        {% if event.galleries.all %}
         <li><a href="#tab-gallery">Galleri</a></li>
+        {% endif %}
     </ul>
     <div id="pracinfo">
         <h4>Pratisk Information</h4>
@@ -24,19 +28,22 @@
             <p>Adresse: {{event.address|safe}}</p>
         {% endif %}
         {% if facebook_id %}
-            <a href={{event.facebook_id}} id="eventbutton"><img src="facebookbutton"></img></a>
+            <a href="http://www.facebook.com/{{event.facebook_id}}" id="eventbutton"><img src="facebookbutton"></img></a>
         {% endif %}
         {% if event.ticket_link %}
             <p><a href={{event.ticket_link}} id="ticketbutton">Bestil billetter</a></p>
         {% endif %}
         <img src={{event.coverimage.get_display_url}} width="310px"></img>
    </div>
+   {% if event.description %}
     <div id="tab-description">
         {{event.description|safe}}
     </div>
+    {% endif %}
     <div id="tab-cast">
         {{event.cast|safe}}
     </div>
+    {% if event.galleries.all %}
     <div id="tab-gallery">
         <div id="gallery-info"> 
             {% for gallery in event.galleries.all %}
@@ -53,6 +60,7 @@
         </div>
         <div id="gallery-view"></div>
     </div>
+    {% endif %}
 </div>
 <div class="clear"></div>
 <br>
