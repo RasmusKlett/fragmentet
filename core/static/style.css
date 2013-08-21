@@ -143,6 +143,10 @@ p,a,h1,h2,h3,h4 {
     color: #303030;
 }
 
+a:hover {
+    color: #89273A;
+}
+
 :focus {
     outline: none;
 }
@@ -456,6 +460,7 @@ p,a,h1,h2,h3,h4 {
 
 #listbackground {
     background-color: #DDDCD6;
+    box-shadows 0px -20px 15px 0px #E7E6DF inset;
     margin: -30px; 
 }
 
@@ -495,22 +500,15 @@ p,a,h1,h2,h3,h4 {
     margin: 0px 15px 0px 0px;
 }
 
-.tablefield p {
-    color: #303030;  
-}
-
-.tablefield h3 {
-    color: #303030;
-}
-
 .tablefield a {
     text-decoration:none;
 }
 
-.tablefield li:hover {
+.tablefield li:hover *, .tablefield li:hover {
     background-color: #89273A;
-    
+    color:white;
 }
+
 
 
         /* Om teatret */
@@ -553,12 +551,17 @@ p,a,h1,h2,h3,h4 {
 
 
 
-    /* Medlemskab */
+    /* medlemskab */
 
 
 #top-info {
     margin-top: 20px;
     text-align:center;
+}
+
+#mid-info {
+    overflow:auto;
+    height:auto;
 }
 
 .info-frame {
@@ -618,17 +621,13 @@ p,a,h1,h2,h3,h4 {
     padding-top:12px;
 }
 
-#footer p {
+#footer p, #footer a {
     color: #BE9C45;
     display:inline;
     padding-top: 25px;
     margin-right: 20px;
-}
-
-#footer a {
-    color: #BE9C45;
-    display:inline;
-}
+    text-shadow: 0px -1.3px 0px rgba(0,0,0,.5), 0px 1px 0px rgba(0,0,0,.5);
+    }
 
 #footer a:hover {
     color: #89273A;

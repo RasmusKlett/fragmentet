@@ -6,13 +6,15 @@
     <div id="top-info">
         {{ top|safe }}
     </div>
-    <div id="active" class="info-frame">
-        <h3>Aktivt medlemskab</h3>
-        {{ active|safe }}
-    </div>
-    <div id="passive" class="info-frame">
-        <h3>Passivt medlemskab</h3>
-        {{ passive|safe }}
+    <div id="mid-info">
+        <div id="active" class="info-frame">
+            <h3>Aktivt medlemskab</h3>
+            {{ active|safe }}
+        </div>
+        <div id="passive" class="info-frame">
+            <h3>Passivt medlemskab</h3>
+            {{ passive|safe }}
+        </div>
     </div>
     <div id="bot-info" class="clear">
         {{ bottom|safe }}
