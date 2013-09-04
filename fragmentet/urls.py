@@ -4,6 +4,7 @@ from django.conf import settings
 import events.views
 import info.views
 import core.views
+import newsletter.views
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -19,6 +20,8 @@ urlpatterns = patterns('',
     url(r'^om-teatret/?$', info.views.about),
     url(r'^medlemskab/?$', info.views.membership),
     url(r'^kontakt/?$', info.views.contact),
+    url(r'^tilmeld-nyhedsbrev/?$', newsletter.views.subscribe),
+    url(r'^afmeld-nyhedsbrev/?$', newsletter.views.unsubscribe),
     (r'^photologue/', include('photologue.urls')),
     (r'^tinymce/', include('tinymce.urls')),
 

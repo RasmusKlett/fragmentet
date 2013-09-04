@@ -1,0 +1,9 @@
+{% extends selected_template|default:"base.html" %}
+{% load url from future %}
+
+{% block content %}
+<p>Frameld Fragmentets nyhedsbrev ved at indtaste din E-mail her:</p>
+<form action="{% url 'newsletter.views.unsubscribe' %}" method="post">{% csrf_token %}
+{{ subscriberForm.as_p }}
+<input type="submit" value="Afmeld" />
+{% endblock %}

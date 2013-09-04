@@ -1,0 +1,4 @@
+{% extends selected_template|default:"base.html" %}
+{% block content %}
+Adressen {{ email }} er nu {% if subscribed %}tilmeldt{% else %}frameldt{% endif %} nyhedsbrevet.
+{% endblock %}

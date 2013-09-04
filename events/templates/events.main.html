@@ -86,7 +86,10 @@
 </div>
 <div id="newsletter">
     <p>Tilmed dig nyhedsbreve fra fragmentet her:</p>
-    <a href="nyhedsbrevmedbørneporno">Nyhedsbrev</a>
+    <form action="{% url 'newsletter.views.subscribe' %}" method="post">{% csrf_token %}
+    {{ subscriberForm.as_p }}
+    <input type="submit" value="Tilmeld" />
+</form>
 </div>
 <div class="clear"></div>
 {% endblock %}

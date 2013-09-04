@@ -1,4 +1,5 @@
 from django.http import Http404
+from newsletter.forms import SubscriberForm
 from events.models import *
 from info.models import *
 import facebook
@@ -58,7 +59,12 @@ def main(request):
         audition = Event.objects.annotate(date=Min('alldates__datetime')).filter(category=2).latest('alldates')
     except ObjectDoesNotExist:
         pass
-    return render(request, 'events.main.html', {'event': event, 'posts':posts, 'audition':audition})
+    return render(request, 'events.main.html', {
+        'event': event, 
+        'posts':posts, 
+        'audition':audition,
+        'subscriberForm': SubscriberForm()
+    })
 
 def _view_list(request, isArchive):
     """Returns listview of events"""

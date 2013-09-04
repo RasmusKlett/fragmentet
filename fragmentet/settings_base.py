@@ -100,6 +100,7 @@ INSTALLED_APPS = (
     'events',
     'core',
     'info',
+    'newsletter',
     
     # plugins
     'photologue',
