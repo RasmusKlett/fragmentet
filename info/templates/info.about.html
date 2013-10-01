@@ -1,16 +1,17 @@
 {% extends selected_template|default:"base.html" %}
+{% load static %}
 
 {% block title %}Om Teatret{% endblock %}
-{% block content %} 
+{% block content %}
 <div class="infopage">
     <h3>Fragmentets historie</h3>
     <div class="infopage-text">
         {{ history|safe }}
     </div>
-    <img src={{ image.get_display_url }} > 
-    <div id="bot-agrements">
-        <p>Klik på nedenstående link for at downloade PDF med Fragmentetsvedtægter</p>
-        <a href="www.downloadmig.dk" alt="Download">Download Vedtægter</a>
+    <img src={{ image.get_display_url }} >
+    <div id="bot-agreements">
+        <p>Klik på nedenstående link for at downloade PDF med Fragmentets vedtægter</p>
+        <a href="{% static 'Vedtaegter.pdf' %}" alt="Download">Download Vedtægter</a>
     </div>
 </div>
 <div class="clear"></div>
