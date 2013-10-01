@@ -7,6 +7,7 @@ import os
 import time
 from datetime import datetime
 from django.core.cache import cache
+from django.core import management
 from photologue.models import Gallery, Photo
 from django.db.models import Max, Min
 from django.utils import timezone
@@ -15,28 +16,13 @@ from django.core.exceptions import ObjectDoesNotExist
 import re
 
 
-def get_wall_posts():
-    """Loads newsfeed from Facebook."""
-    f = open('events/facebook_token.txt', 'r+') # load token from local file
-    access_token = f.read()[:-1] # Strip trailing newline
-    graph = facebook.GraphAPI(access_token)
-    response = graph.request("126467437553756", {"fields":"posts.limit(4).fields(type,status_type,story,message,link,caption,created_time)", "locale":"da_DK"})
-    posts = response["posts"]["data"]
-    # Convert dates to struct_time objects
-    for post in posts:
-        post["created_time"] = datetime.strptime(post["created_time"], "%Y-%m-%dT%H:%M:%S+0000")
-    return posts
-
-
 def main(request):
     """Shows mainpage"""
     posts = cache.get('facebook_data')
     if not posts:
-        try:
-            posts = get_wall_posts()
-            cache.set('facebook_data', posts)
-        except Exception as e:
-           print "FBError:", e
+        print "Error: events/views: facebook_data empty"
+        management.call_command("updatefacebook")
+        posts = cache.get('facebook_data')
     event = None
     try:
         event = Event.objects.select_related().annotate(min_date=Min('alldates__datetime'), max_date=Max('alldates__datetime')).filter(category=0, max_date__gte=datetime.today()).latest('min_date')
