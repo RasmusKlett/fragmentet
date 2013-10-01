@@ -24,7 +24,7 @@ class Command(NoArgsCommand):
         try:
             posts = get_wall_posts()
             if posts:
-                cache.set('facebook_data', posts)
+                cache.set('facebook_data', posts, 3600)
             self.stdout.write('facebook data updated.\n')
         except Exception as e:
            self.stdout.write("FBError: "+ str(e) + '\n')
